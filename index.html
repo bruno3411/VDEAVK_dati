@@ -193,15 +193,29 @@
     align-items: center;
     justify-content: center;
     width: 20px; height: 20px;
-    border: 1.5px solid #888;
+    border: 1.5px solid #8b1a2e;
     border-radius: 2px;
     font-size: 15px;
     font-weight: 700;
-    color: #555;
+    color: #8b1a2e;
     background: #fff;
     flex-shrink: 0;
     line-height: 1;
   }
+  /* ── BOTTOM BUTTONS ── */
+  .bottom-btns { display: flex; gap: 14px; margin-top: 24px; }
+  .btn-red {
+    padding: 12px 22px;
+    border-radius: 24px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    background: #8b1a2e;
+    color: #fff;
+    transition: opacity 0.15s;
+  }
+  .btn-red:hover { opacity: 0.85; }
   .accordion-body {
     background: #fff;
     border: 1px solid #ddd;
@@ -328,7 +342,26 @@
       Iesniegumi
     </div>
     <div class="accordion-body">
-      <div style="padding:14px 20px;color:#666;font-size:13px;">Nav iesniegumu.</div>
+      <div class="decision">
+        <div class="decision-num">Iesnieguma Nr.: 2024/10341</div>
+        <table class="data-table">
+          <tr><td>Datums:</td><td>03.03.2024</td></tr>
+          <tr><td>Statuss:</td><td class="bold-val">Izskatīts</td></tr>
+          <tr><td>Veids:</td><td>Invaliditātes noteikšana</td></tr>
+        </table>
+        <div class="decision-num" style="margin-top:18px;">Iesnieguma Nr.: 2023/88512</div>
+        <table class="data-table">
+          <tr><td>Datums:</td><td>14.06.2023</td></tr>
+          <tr><td>Statuss:</td><td class="bold-val">Izskatīts</td></tr>
+          <tr><td>Veids:</td><td>Darbspēju zaudējuma noteikšana</td></tr>
+        </table>
+        <div class="decision-num" style="margin-top:18px;">Iesnieguma Nr.: 2022/55210</div>
+        <table class="data-table">
+          <tr><td>Datums:</td><td>22.11.2022</td></tr>
+          <tr><td>Statuss:</td><td class="bold-val">Izskatīts</td></tr>
+          <tr><td>Veids:</td><td>Atkārtota invaliditātes pārbaude</td></tr>
+        </table>
+      </div>
     </div>
   </div>
 
@@ -342,52 +375,47 @@
       <div class="decision">
         <div class="decision-num">Lēmuma Nr. 2025/52912</div>
         <table class="data-table">
-          <tr>
-            <td>Datums</td>
-            <td>29.09.2025</td>
-          </tr>
-          <tr>
-            <td>Darbspējas zaudējums:</td>
-            <td>30</td>
-          </tr>
-          <tr>
-            <td>Invaliditāte noteikta:</td>
-            <td>Ir</td>
-          </tr>
-          <tr>
-            <td>Invaliditātes grupa:</td>
-            <td class="bold-val">TREŠĀ (3) GRUPA</td>
-          </tr>
-          <tr>
-            <td>Invaliditātes vai darbspēju<br>zaudējuma cēlonis:</td>
-            <td class="bold-val">Nelaimes gadījums darbā</td>
-          </tr>
-          <tr>
-            <td>Funkcionālo traucējumu veids:</td>
-            <td class="bold-val">Pārējie</td>
-          </tr>
-          <tr class="sub-header">
-            <td colspan="2">Invaliditātes vai darbspēju zaudējuma periods:</td>
-          </tr>
-          <tr class="sub-val">
-            <td>Datums no</td>
-            <td>29.09.2025</td>
-          </tr>
-          <tr class="sub-val">
-            <td>Datums līdz</td>
-            <td>28.09.2026</td>
-          </tr>
-          <tr>
-            <td>Spēkā līdz:</td>
-            <td>28.09.2026</td>
-          </tr>
-          <tr class="download-row">
-            <td>Datne:</td>
-            <td>
-              <div class="dl-icon">&#11015;</div>
-              <div class="dl-text">Lejupielādēt<br>lēmuma datni</div>
-            </td>
-          </tr>
+          <tr><td>Datums</td><td>29.09.2025</td></tr>
+          <tr><td>Darbspējas zaudējums:</td><td>30</td></tr>
+          <tr><td>Invaliditāte noteikta:</td><td>Ir</td></tr>
+          <tr><td>Invaliditātes grupa:</td><td class="bold-val">TREŠĀ (3) GRUPA</td></tr>
+          <tr><td>Invaliditātes vai darbspēju<br>zaudējuma cēlonis:</td><td class="bold-val">Nelaimes gadījums darbā</td></tr>
+          <tr><td>Funkcionālo traucējumu veids:</td><td class="bold-val">Pārējie</td></tr>
+          <tr class="sub-header"><td colspan="2">Invaliditātes vai darbspēju zaudējuma periods:</td></tr>
+          <tr class="sub-val"><td>Datums no</td><td>29.09.2025</td></tr>
+          <tr class="sub-val"><td>Datums līdz</td><td>28.09.2026</td></tr>
+          <tr><td>Spēkā līdz:</td><td>28.09.2026</td></tr>
+          <tr class="download-row"><td>Datne:</td><td><div class="dl-icon">&#11015;</div><div class="dl-text">Lejupielādēt<br>lēmuma datni</div></td></tr>
+        </table>
+
+        <div class="decision-num" style="margin-top:20px;">Lēmuma Nr. 2024/38710</div>
+        <table class="data-table">
+          <tr><td>Datums</td><td>15.04.2024</td></tr>
+          <tr><td>Darbspējas zaudējums:</td><td>45</td></tr>
+          <tr><td>Invaliditāte noteikta:</td><td>Ir</td></tr>
+          <tr><td>Invaliditātes grupa:</td><td class="bold-val">OTRĀ (2) GRUPA</td></tr>
+          <tr><td>Invaliditātes vai darbspēju<br>zaudējuma cēlonis:</td><td class="bold-val">Slimība</td></tr>
+          <tr><td>Funkcionālo traucējumu veids:</td><td class="bold-val">Pārējie</td></tr>
+          <tr class="sub-header"><td colspan="2">Invaliditātes vai darbspēju zaudējuma periods:</td></tr>
+          <tr class="sub-val"><td>Datums no</td><td>15.04.2024</td></tr>
+          <tr class="sub-val"><td>Datums līdz</td><td>14.04.2025</td></tr>
+          <tr><td>Spēkā līdz:</td><td>14.04.2025</td></tr>
+          <tr class="download-row"><td>Datne:</td><td><div class="dl-icon">&#11015;</div><div class="dl-text">Lejupielādēt<br>lēmuma datni</div></td></tr>
+        </table>
+
+        <div class="decision-num" style="margin-top:20px;">Lēmuma Nr. 2023/21456</div>
+        <table class="data-table">
+          <tr><td>Datums</td><td>08.07.2023</td></tr>
+          <tr><td>Darbspējas zaudējums:</td><td>60</td></tr>
+          <tr><td>Invaliditāte noteikta:</td><td>Ir</td></tr>
+          <tr><td>Invaliditātes grupa:</td><td class="bold-val">PIRMĀ (1) GRUPA</td></tr>
+          <tr><td>Invaliditātes vai darbspēju<br>zaudējuma cēlonis:</td><td class="bold-val">Iedzimta saslimšana</td></tr>
+          <tr><td>Funkcionālo traucējumu veids:</td><td class="bold-val">Garīgie traucējumi</td></tr>
+          <tr class="sub-header"><td colspan="2">Invaliditātes vai darbspēju zaudējuma periods:</td></tr>
+          <tr class="sub-val"><td>Datums no</td><td>08.07.2023</td></tr>
+          <tr class="sub-val"><td>Datums līdz</td><td>Beztermiņa</td></tr>
+          <tr><td>Spēkā līdz:</td><td>Beztermiņa</td></tr>
+          <tr class="download-row"><td>Datne:</td><td><div class="dl-icon">&#11015;</div><div class="dl-text">Lejupielādēt<br>lēmuma datni</div></td></tr>
         </table>
       </div>
     </div>
@@ -400,9 +428,112 @@
       Atzinumi
     </div>
     <div class="accordion-body">
-      <div style="padding:14px 20px;color:#666;font-size:13px;">Nav atzinumu.</div>
+      <div class="decision">
+
+        <div class="decision-num">Atzinuma Nr. 21-2023-2665-A</div>
+        <table class="data-table">
+          <tr><td>Datums</td><td>22.08.2023</td></tr>
+          <tr><td>Veids:</td><td class="bold-val">Par īpašas kopšanas nepieciešamību</td></tr>
+          <tr><td>Atzinuma lēmums:</td><td class="bold-val">Noteikt</td></tr>
+          <tr class="sub-header"><td colspan="2">Atzinuma darbības periods</td></tr>
+          <tr class="sub-val"><td>Datums no</td><td>05.07.2023</td></tr>
+          <tr class="sub-val"><td>Datums līdz</td><td>04.07.2025</td></tr>
+          <tr><td>Spēkā līdz:</td><td>04.07.2025</td></tr>
+        </table>
+
+        <div class="decision-num" style="margin-top:20px;">Atzinuma Nr. 35-2020-313-A</div>
+        <table class="data-table">
+          <tr><td>Datums</td><td>17.03.2020</td></tr>
+          <tr><td>Veids:</td><td class="bold-val">Par medicīniskajām indikācijām vieglā automobiļa speciālai pielāgošanai un pabalsta saņemšanai transporta izdevumu kompensēšanai</td></tr>
+          <tr><td>Atzinuma lēmums:</td><td class="bold-val">Nenoteikt</td></tr>
+          <tr><td>Spēkā līdz:</td><td></td></tr>
+        </table>
+
+        <div class="decision-num" style="margin-top:20px;">Atzinuma Nr. 12-2021-0891-B</div>
+        <table class="data-table">
+          <tr><td>Datums</td><td>10.01.2021</td></tr>
+          <tr><td>Veids:</td><td class="bold-val">Par asistenta pakalpojuma nepieciešamību</td></tr>
+          <tr><td>Atzinuma lēmums:</td><td class="bold-val">Noteikt</td></tr>
+          <tr class="sub-header"><td colspan="2">Atzinuma darbības periods</td></tr>
+          <tr class="sub-val"><td>Datums no</td><td>01.02.2021</td></tr>
+          <tr class="sub-val"><td>Datums līdz</td><td>31.01.2023</td></tr>
+          <tr><td>Spēkā līdz:</td><td>31.01.2023</td></tr>
+        </table>
+
+        <div class="decision-num" style="margin-top:20px;">Atzinuma Nr. 08-2019-4420-A</div>
+        <table class="data-table">
+          <tr><td>Datums</td><td>05.09.2019</td></tr>
+          <tr><td>Veids:</td><td class="bold-val">Par tehnisko palīglīdzekļu nepieciešamību</td></tr>
+          <tr><td>Atzinuma lēmums:</td><td class="bold-val">Noteikt</td></tr>
+          <tr class="sub-header"><td colspan="2">Atzinuma darbības periods</td></tr>
+          <tr class="sub-val"><td>Datums no</td><td>05.09.2019</td></tr>
+          <tr class="sub-val"><td>Datums līdz</td><td>Beztermiņa</td></tr>
+          <tr><td>Spēkā līdz:</td><td>Beztermiņa</td></tr>
+        </table>
+
+      </div>
     </div>
   </div>
+
+  <!-- Apliecības (collapsed) -->
+  <div class="accordion">
+    <div class="accordion-header" onclick="toggleAcc(this)">
+      <span class="acc-toggle">+</span>
+      Apliecības
+    </div>
+    <div class="accordion-body">
+      <div class="decision">
+
+        <div class="decision-num">Apliecības Nr.: 143630</div>
+        <table class="data-table">
+          <tr><td>Saistītā invaliditātes lēmuma Nr.:</td><td>2026/21631</td></tr>
+          <tr><td>Invaliditātes grupa:</td><td class="bold-val">OTRĀ (2) GRUPA</td></tr>
+          <tr class="sub-header"><td colspan="2">Termiņš (Invaliditātes periods)</td></tr>
+          <tr class="sub-val"><td>Datums no</td><td>12.05.2026</td></tr>
+          <tr class="sub-val"><td>Datums līdz</td><td class="bold-val">Beztermiņa</td></tr>
+          <tr><td>Apliecība izsniegta:</td><td>14.05.2026</td></tr>
+        </table>
+
+        <div class="decision-num" style="margin-top:20px;">Apliecības Nr.: 114954</div>
+        <table class="data-table">
+          <tr><td>Saistītā invaliditātes lēmuma Nr.:</td><td>2025/63482</td></tr>
+          <tr><td>Invaliditātes grupa:</td><td class="bold-val">PIRMĀ (1) GRUPA</td></tr>
+          <tr class="sub-header"><td colspan="2">Termiņš (Invaliditātes periods)</td></tr>
+          <tr class="sub-val"><td>Datums no</td><td>01.10.2025</td></tr>
+          <tr class="sub-val"><td>Datums līdz</td><td>30.09.2026</td></tr>
+          <tr><td>Apliecība izsniegta:</td><td>05.10.2025</td></tr>
+        </table>
+
+        <div class="decision-num" style="margin-top:20px;">Apliecības Nr.: 098231</div>
+        <table class="data-table">
+          <tr><td>Saistītā invaliditātes lēmuma Nr.:</td><td>2024/38710</td></tr>
+          <tr><td>Invaliditātes grupa:</td><td class="bold-val">OTRĀ (2) GRUPA</td></tr>
+          <tr class="sub-header"><td colspan="2">Termiņš (Invaliditātes periods)</td></tr>
+          <tr class="sub-val"><td>Datums no</td><td>15.04.2024</td></tr>
+          <tr class="sub-val"><td>Datums līdz</td><td>14.04.2025</td></tr>
+          <tr><td>Apliecība izsniegta:</td><td>18.04.2024</td></tr>
+        </table>
+
+        <div class="decision-num" style="margin-top:20px;">Apliecības Nr.: 076540</div>
+        <table class="data-table">
+          <tr><td>Saistītā invaliditātes lēmuma Nr.:</td><td>2023/21456</td></tr>
+          <tr><td>Invaliditātes grupa:</td><td class="bold-val">PIRMĀ (1) GRUPA</td></tr>
+          <tr class="sub-header"><td colspan="2">Termiņš (Invaliditātes periods)</td></tr>
+          <tr class="sub-val"><td>Datums no</td><td>08.07.2023</td></tr>
+          <tr class="sub-val"><td>Datums līdz</td><td class="bold-val">Beztermiņa</td></tr>
+          <tr><td>Apliecība izsniegta:</td><td>12.07.2023</td></tr>
+        </table>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Apakšējās pogas -->
+  <div class="bottom-btns">
+    <button class="btn-red">Pieprasīt datus par citu personu</button>
+    <button class="btn-red">Pabeigt</button>
+  </div>
+
 </div>
 
 <script>
