@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="lv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VDEĀVK dati – Latvija.lv</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; font-size: 14px; color: #333; background: #f5f5f5; }
+
+  /* ── TOP BAR ── */
+  .topbar {
+    background: #fff;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    height: 56px;
+    gap: 0;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    font-size: 22px;
+    font-weight: 700;
+    color: #1a1a1a;
+    letter-spacing: -0.5px;
+    text-decoration: none;
+    padding-right: 20px;
+    border-right: 1px solid #ddd;
+    white-space: nowrap;
+    user-select: none;
+  }
+  .logo .dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background: #f47920;
+    border-radius: 50%;
+    margin: 0 1px;
+    vertical-align: middle;
+    position: relative;
+    top: -1px;
+  }
+  .topbar-mid {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 0 18px;
+    border-right: 1px solid #ddd;
+    height: 100%;
+  }
+  .aaa-btn {
+    font-size: 13px;
+    font-weight: 600;
+    color: #333;
+    cursor: pointer;
+    letter-spacing: 0.5px;
+    background: none;
+    border: none;
+    padding: 0;
+  }
+  .contrast-btn {
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    background: linear-gradient(90deg, #1a1a1a 50%, #fff 50%);
+    border: 1.5px solid #888;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .lang-btn {
+    font-size: 13px;
+    font-weight: 600;
+    color: #333;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0 4px;
+    letter-spacing: 0.5px;
+  }
+  .search-wrap {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    padding: 0 16px;
+    gap: 10px;
+    border-right: 1px solid #ddd;
+    height: 100%;
+  }
+  .search-icon { color: #f47920; font-size: 18px; cursor: pointer; }
+  .search-input {
+    border: none;
+    outline: none;
+    font-size: 14px;
+    color: #aaa;
+    background: transparent;
+    width: 100%;
+    max-width: 340px;
+  }
+  .user-area {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-left: 16px;
+    cursor: pointer;
+    user-select: none;
+    min-width: 180px;
+  }
+  .user-avatar {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: #5b8ec4;
+    display: flex; align-items: center; justify-content: center;
+    color: #fff;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  .user-info { display: flex; flex-direction: column; line-height: 1.3; }
+  .user-name { font-size: 13px; font-weight: 600; color: #1a1a1a; }
+  .user-role { font-size: 11px; color: #666; }
+  .caret { font-size: 12px; color: #555; margin-left: 4px; }
+
+  /* ── ORANGE NAV ── */
+  .mainnav {
+    background: #f47920;
+    display: flex;
+    align-items: center;
+    height: 44px;
+    padding: 0 20px;
+    gap: 0;
+  }
+  .mainnav a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 0 22px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    transition: background 0.15s;
+    cursor: pointer;
+  }
+  .mainnav a:hover { background: rgba(0,0,0,0.12); }
+  .mainnav a.home { padding: 0 18px; font-size: 18px; }
+
+  /* ── MAIN CONTENT ── */
+  .content {
+    max-width: 860px;
+    margin: 30px auto;
+    padding: 0 20px 40px;
+    background: transparent;
+  }
+  .page-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 14px;
+  }
+  .person-name {
+    font-size: 15px;
+    font-weight: 700;
+    color: #1a1a1a;
+    line-height: 1.4;
+  }
+  .person-id {
+    font-size: 13px;
+    color: #444;
+    margin-bottom: 18px;
+  }
+
+  /* ── ACCORDION ── */
+  .accordion { margin-bottom: 6px; }
+  .accordion-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    padding: 10px 14px;
+    cursor: pointer;
+    user-select: none;
+    font-size: 14px;
+    font-weight: 500;
+    color: #1a1a1a;
+    transition: background 0.1s;
+  }
+  .accordion-header:hover { background: #fafafa; }
+  .acc-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px; height: 20px;
+    border: 1.5px solid #888;
+    border-radius: 2px;
+    font-size: 15px;
+    font-weight: 700;
+    color: #555;
+    background: #fff;
+    flex-shrink: 0;
+    line-height: 1;
+  }
+  .accordion-body {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-top: none;
+    border-radius: 0 0 3px 3px;
+    display: none;
+  }
+  .accordion-body.open { display: block; }
+
+  /* ── DECISION BLOCK ── */
+  .decision {
+    padding: 18px 20px 20px;
+  }
+  .decision-num {
+    font-size: 14px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 12px;
+  }
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .data-table tr { border-bottom: 1px solid #f0f0f0; }
+  .data-table tr:last-child { border-bottom: none; }
+  .data-table td {
+    padding: 7px 4px;
+    vertical-align: top;
+    font-size: 13.5px;
+  }
+  .data-table td:first-child {
+    color: #555;
+    width: 52%;
+    padding-right: 10px;
+  }
+  .data-table td:last-child {
+    color: #1a1a1a;
+    font-weight: 500;
+    text-align: right;
+  }
+  .data-table td.bold-val {
+    font-weight: 700;
+    color: #1a1a1a;
+  }
+  .sub-header td {
+    padding-top: 10px;
+    padding-bottom: 2px;
+    font-size: 13px;
+    color: #666;
+  }
+  .sub-header td:first-child { font-weight: 400; }
+  .sub-val td:first-child { padding-left: 12px; }
+
+  .download-row td:last-child {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 7px;
+    color: #f47920;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  .download-row td:last-child:hover { text-decoration: underline; }
+  .dl-icon {
+    width: 26px; height: 26px;
+    display: flex; align-items: center; justify-content: center;
+    border: 2px solid #f47920;
+    border-radius: 2px;
+    color: #f47920;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+  .dl-text { color: #f47920; font-size: 13px; text-align: right; line-height: 1.3; }
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <a class="logo">Latv<span class="dot"></span>ja.lv</a>
+
+  <div class="topbar-mid">
+    <button class="aaa-btn" title="Teksta izmērs">AAA</button>
+    <div class="contrast-btn" title="Kontrasts"></div>
+    <button class="lang-btn" title="Valoda">EN</button>
+  </div>
+
+  <div class="search-wrap">
+    <span class="search-icon">&#128269;</span>
+    <input class="search-input" type="text" placeholder="Meklēt portālā...">
+  </div>
+
+  <div class="user-area" title="Profils">
+    <div class="user-avatar">&#128100;</div>
+    <div class="user-info">
+      <span class="user-name">| Jānis Bērziņš</span>
+      <span class="user-role">Fiziska persona</span>
+    </div>
+    <span class="caret">&#9660;</span>
+  </div>
+</div>
+
+<!-- ORANGE NAV -->
+<nav class="mainnav">
+  <a class="home" title="Sākumlapa">&#127968;</a>
+  <a>Pakalpojumi</a>
+  <a>Ko darīt, ja...?</a>
+  <a>Mana Latvija.lv</a>
+  <a>E-adrese</a>
+  <a>Par portālu</a>
+</nav>
+
+<!-- MAIN CONTENT -->
+<div class="content">
+  <div class="page-title">VDEĀVK dati:</div>
+  <div class="person-name">JĀNIS BĒRZIŅŠ</div>
+  <div class="person-id">123456-12345</div>
+
+  <!-- Iesniegumi (collapsed) -->
+  <div class="accordion">
+    <div class="accordion-header" onclick="toggleAcc(this)">
+      <span class="acc-toggle">+</span>
+      Iesniegumi
+    </div>
+    <div class="accordion-body">
+      <div style="padding:14px 20px;color:#666;font-size:13px;">Nav iesniegumu.</div>
+    </div>
+  </div>
+
+  <!-- Lēmumi (expanded) -->
+  <div class="accordion">
+    <div class="accordion-header" onclick="toggleAcc(this)">
+      <span class="acc-toggle">−</span>
+      Lēmumi
+    </div>
+    <div class="accordion-body open">
+      <div class="decision">
+        <div class="decision-num">Lēmuma Nr. 2025/52912</div>
+        <table class="data-table">
+          <tr>
+            <td>Datums</td>
+            <td>29.09.2025</td>
+          </tr>
+          <tr>
+            <td>Darbspējas zaudējums:</td>
+            <td>30</td>
+          </tr>
+          <tr>
+            <td>Invaliditāte noteikta:</td>
+            <td>Ir</td>
+          </tr>
+          <tr>
+            <td>Invaliditātes grupa:</td>
+            <td class="bold-val">TREŠĀ (3) GRUPA</td>
+          </tr>
+          <tr>
+            <td>Invaliditātes vai darbspēju<br>zaudējuma cēlonis:</td>
+            <td class="bold-val">Nelaimes gadījums darbā</td>
+          </tr>
+          <tr>
+            <td>Funkcionālo traucējumu veids:</td>
+            <td class="bold-val">Pārējie</td>
+          </tr>
+          <tr class="sub-header">
+            <td colspan="2">Invaliditātes vai darbspēju zaudējuma periods:</td>
+          </tr>
+          <tr class="sub-val">
+            <td>Datums no</td>
+            <td>29.09.2025</td>
+          </tr>
+          <tr class="sub-val">
+            <td>Datums līdz</td>
+            <td>28.09.2026</td>
+          </tr>
+          <tr>
+            <td>Spēkā līdz:</td>
+            <td>28.09.2026</td>
+          </tr>
+          <tr class="download-row">
+            <td>Datne:</td>
+            <td>
+              <div class="dl-icon">&#11015;</div>
+              <div class="dl-text">Lejupielādēt<br>lēmuma datni</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Atzinumi (collapsed) -->
+  <div class="accordion">
+    <div class="accordion-header" onclick="toggleAcc(this)">
+      <span class="acc-toggle">+</span>
+      Atzinumi
+    </div>
+    <div class="accordion-body">
+      <div style="padding:14px 20px;color:#666;font-size:13px;">Nav atzinumu.</div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function toggleAcc(header) {
+    const body = header.nextElementSibling;
+    const toggle = header.querySelector('.acc-toggle');
+    const isOpen = body.classList.contains('open');
+    body.classList.toggle('open', !isOpen);
+    toggle.textContent = isOpen ? '+' : '−';
+  }
+</script>
+</body>
+</html>
