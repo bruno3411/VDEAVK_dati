@@ -6,542 +6,479 @@
 <title>VDEĀVK dati – Latvija.lv</title>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'Segoe UI', Arial, sans-serif; font-size: 14px; color: #333; background: #f5f5f5; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; font-size: 14px; color: #222; background: #fff; }
 
-  /* ── TOP BAR ── */
-  .topbar {
-    background: #fff;
-    border-bottom: 1px solid #ddd;
-    display: flex;
-    align-items: center;
-    padding: 0 20px;
-    height: 56px;
-    gap: 0;
-  }
-  .logo {
-    display: flex;
-    align-items: center;
-    font-size: 22px;
-    font-weight: 700;
-    color: #1a1a1a;
-    letter-spacing: -0.5px;
-    text-decoration: none;
-    padding-right: 20px;
-    border-right: 1px solid #ddd;
-    white-space: nowrap;
-    user-select: none;
-  }
-  .logo .dot {
-    display: inline-block;
-    width: 10px;
-    height: 10px;
-    background: #8b1a2e;
-    border-radius: 50%;
-    margin: 0 1px;
-    vertical-align: middle;
-    position: relative;
-    top: -1px;
-  }
-  .topbar-mid {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    padding: 0 18px;
-    border-right: 1px solid #ddd;
-    height: 100%;
-  }
-  .aaa-btn {
-    font-size: 13px;
-    font-weight: 600;
-    color: #333;
-    cursor: pointer;
-    letter-spacing: 0.5px;
-    background: none;
-    border: none;
-    padding: 0;
-  }
-  .contrast-btn {
-    width: 22px; height: 22px;
-    border-radius: 50%;
-    background: linear-gradient(90deg, #1a1a1a 50%, #fff 50%);
-    border: 1.5px solid #888;
-    cursor: pointer;
-    display: flex; align-items: center; justify-content: center;
-  }
-  .lang-btn {
-    font-size: 13px;
-    font-weight: 600;
-    color: #333;
-    cursor: pointer;
-    background: none;
-    border: none;
-    padding: 0 4px;
-    letter-spacing: 0.5px;
-  }
-  .search-wrap {
-    display: flex;
-    align-items: center;
-    flex: 1;
-    padding: 0 16px;
-    gap: 10px;
-    border-right: 1px solid #ddd;
-    height: 100%;
-  }
-  .search-icon { color: #8b1a2e; font-size: 18px; cursor: pointer; }
-  .search-input {
-    border: none;
-    outline: none;
-    font-size: 14px;
-    color: #aaa;
-    background: transparent;
-    width: 100%;
-    max-width: 340px;
-  }
-  .user-area {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding-left: 16px;
-    cursor: pointer;
-    user-select: none;
-    min-width: 180px;
-  }
-  .user-avatar {
-    width: 36px; height: 36px;
-    border-radius: 50%;
-    background: #5b8ec4;
-    display: flex; align-items: center; justify-content: center;
-    color: #fff;
-    font-size: 18px;
-    flex-shrink: 0;
-  }
+  /* ALERT */
+  .alertbar { background: #2b2b2b; color: #fff; display: flex; align-items: center; justify-content: space-between; padding: 10px 20px; font-size: 13px; }
+  .alertbar-left { display: flex; align-items: center; gap: 10px; }
+  .alert-icon { width: 22px; height: 22px; background: #c0392b; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; flex-shrink: 0; }
+  .alertbar a { color: #aad4f5; text-decoration: underline; margin-left: 6px; font-size: 12px; }
+  .alertbar-close { cursor: pointer; font-size: 20px; color: #ccc; background: none; border: none; }
+
+  /* TOPBAR */
+  .topbar { background: #fff; border-bottom: 1px solid #ddd; display: flex; align-items: center; padding: 0 24px; height: 56px; }
+  .logo { font-size: 22px; font-weight: 700; color: #1a1a1a; text-decoration: none; padding-right: 20px; border-right: 1px solid #ddd; white-space: nowrap; user-select: none; display: flex; align-items: center; }
+  .logo .dot { display: inline-block; width: 10px; height: 10px; background: #8b1a2e; border-radius: 50%; margin: 0 1px; vertical-align: middle; position: relative; top: -1px; }
+  .topbar-mid { display: flex; align-items: center; gap: 14px; padding: 0 18px; border-right: 1px solid #ddd; height: 100%; }
+  .aaa-btn { font-size: 13px; font-weight: 600; color: #333; cursor: pointer; background: none; border: none; }
+  .contrast-btn { width: 22px; height: 22px; border-radius: 50%; background: linear-gradient(90deg,#1a1a1a 50%,#fff 50%); border: 1.5px solid #888; cursor: pointer; }
+  .lang-btn { font-size: 13px; font-weight: 600; color: #333; cursor: pointer; background: none; border: none; padding: 0 4px; }
+  .search-wrap { display: flex; align-items: center; flex: 1; padding: 0 16px; gap: 10px; border-right: 1px solid #ddd; height: 100%; }
+  .search-icon { color: #8b1a2e; font-size: 18px; }
+  .search-input { border: none; outline: none; font-size: 14px; color: #aaa; background: transparent; width: 100%; }
+  .user-area { display: flex; align-items: center; gap: 10px; padding-left: 16px; cursor: pointer; user-select: none; }
+  .user-avatar { width: 36px; height: 36px; border-radius: 50%; background: #5b8ec4; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 18px; }
   .user-info { display: flex; flex-direction: column; line-height: 1.3; }
   .user-name { font-size: 13px; font-weight: 600; color: #1a1a1a; }
   .user-role { font-size: 11px; color: #666; }
   .caret { font-size: 12px; color: #555; margin-left: 4px; }
 
-  /* ── ORANGE NAV ── */
-  .mainnav {
-    background: #8b1a2e;
-    display: flex;
-    align-items: center;
-    height: 44px;
-    padding: 0 20px;
-    gap: 0;
-  }
-  .mainnav a {
-    color: #fff;
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: 500;
-    padding: 0 22px;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    white-space: nowrap;
-    transition: background 0.15s;
-    cursor: pointer;
-  }
-  .mainnav a:hover { background: rgba(0,0,0,0.12); }
+  /* NAV */
+  .mainnav { background: #8b1a2e; display: flex; align-items: center; height: 44px; padding: 0 24px; }
+  .mainnav a { color: #fff; text-decoration: none; font-size: 14px; font-weight: 500; padding: 0 22px; height: 100%; display: flex; align-items: center; white-space: nowrap; cursor: pointer; transition: background 0.15s; }
+  .mainnav a:hover { background: rgba(0,0,0,0.15); }
   .mainnav a.home { padding: 0 18px; font-size: 18px; }
 
-  /* ── MAIN CONTENT ── */
-  .content {
-    max-width: 860px;
-    margin: 30px auto;
-    padding: 0 20px 40px;
-    background: transparent;
-  }
-  .page-title {
-    font-size: 20px;
-    font-weight: 700;
-    color: #1a1a1a;
-    margin-bottom: 14px;
-  }
-  .person-name {
-    font-size: 15px;
-    font-weight: 700;
-    color: #1a1a1a;
-    line-height: 1.4;
-  }
-  .person-id {
-    font-size: 13px;
-    color: #444;
-    margin-bottom: 18px;
-  }
+  /* PAGE */
+  .page { max-width: 1000px; margin: 0 auto; padding: 28px 24px 60px; }
+  .page-title { font-size: 20px; font-weight: 700; color: #1a1a1a; margin-bottom: 6px; }
+  .person-name { font-size: 15px; font-weight: 700; color: #1a1a1a; }
+  .person-id { font-size: 13px; color: #444; margin-bottom: 22px; }
 
-  /* ── ACCORDION ── */
-  .accordion { margin-bottom: 6px; }
-  .accordion-header {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    background: #fff;
-    border: 1px solid #ddd;
-    border-radius: 3px;
-    padding: 10px 14px;
-    cursor: pointer;
-    user-select: none;
-    font-size: 14px;
-    font-weight: 500;
-    color: #1a1a1a;
-    transition: background 0.1s;
-  }
-  .accordion-header:hover { background: #fafafa; }
-  .acc-toggle {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 20px; height: 20px;
-    border: 1.5px solid #8b1a2e;
-    border-radius: 2px;
-    font-size: 15px;
-    font-weight: 700;
-    color: #8b1a2e;
-    background: #fff;
-    flex-shrink: 0;
-    line-height: 1;
-  }
-  /* ── BOTTOM BUTTONS ── */
-  .bottom-btns { display: flex; gap: 14px; margin-top: 24px; }
-  .btn-red {
-    padding: 12px 22px;
-    border-radius: 24px;
-    font-size: 13px;
-    font-weight: 600;
-    cursor: pointer;
-    border: none;
-    background: #8b1a2e;
-    color: #fff;
-    transition: opacity 0.15s;
-  }
-  .btn-red:hover { opacity: 0.85; }
-  .accordion-body {
-    background: #fff;
-    border: 1px solid #ddd;
-    border-top: none;
-    border-radius: 0 0 3px 3px;
-    display: none;
-  }
-  .accordion-body.open { display: block; }
+  /* TABS */
+  .tabs-wrap { background: #fff; border-radius: 4px 4px 0 0; border-bottom: 2px solid #ddd; display: flex; }
+  .tab { padding: 16px 32px; font-size: 14px; color: #666; cursor: pointer; border: none; border-bottom: 3px solid transparent; margin-bottom: -2px; background: none; font-family: inherit; transition: color 0.15s; white-space: nowrap; }
+  .tab:hover { color: #1a1a1a; }
+  .tab.active { color: #1a1a1a; font-weight: 700; border-bottom-color: #8b1a2e; }
 
-  /* ── DECISION BLOCK ── */
-  .decision {
-    padding: 18px 20px 20px;
-  }
-  .decision-num {
-    font-size: 14px;
-    font-weight: 700;
-    color: #1a1a1a;
-    margin-bottom: 12px;
-  }
-  .data-table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  .data-table tr { border-bottom: 1px solid #f0f0f0; }
-  .data-table tr:last-child { border-bottom: none; }
-  .data-table td {
-    padding: 7px 4px;
-    vertical-align: top;
-    font-size: 13.5px;
-  }
-  .data-table td:first-child {
-    color: #555;
-    width: 52%;
-    padding-right: 10px;
-  }
-  .data-table td:last-child {
-    color: #1a1a1a;
-    font-weight: 500;
-    text-align: right;
-  }
-  .data-table td.bold-val {
-    font-weight: 700;
-    color: #1a1a1a;
-  }
-  .sub-header td {
-    padding-top: 10px;
-    padding-bottom: 2px;
-    font-size: 13px;
-    color: #666;
-  }
-  .sub-header td:first-child { font-weight: 400; }
-  .sub-val td:first-child { padding-left: 12px; }
+  .tab-panel { display: none; padding-top: 16px; }
+  .tab-panel.active { display: block; }
 
-  .download-row td:last-child {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    gap: 7px;
-    color: #8b1a2e;
-    font-weight: 600;
-    cursor: pointer;
-    text-decoration: none;
-  }
-  .download-row td:last-child:hover { text-decoration: underline; }
-  .dl-icon {
-    width: 26px; height: 26px;
-    display: flex; align-items: center; justify-content: center;
-    border: 2px solid #8b1a2e;
-    border-radius: 2px;
-    color: #8b1a2e;
-    font-size: 14px;
-    flex-shrink: 0;
-  }
-  .dl-text { color: #8b1a2e; font-size: 13px; text-align: right; line-height: 1.3; }
+  /* GROUP LABEL */
+  .group-label { font-size: 13px; font-weight: 600; color: #444; text-transform: uppercase; letter-spacing: 0.5px; margin: 20px 0 10px; padding-left: 2px; }
+  .group-label:first-child { margin-top: 4px; }
+
+  /* ITEM ROW */
+  .exp-item { background: #f5f5f5; border: 1px solid #e0e0e0; border-radius: 4px; margin-bottom: 8px; overflow: hidden; }
+  .exp-header { display: flex; align-items: center; gap: 16px; padding: 14px 18px; cursor: pointer; user-select: none; transition: background 0.1s; background: #f5f5f5; }
+  .exp-header:hover { background: #eeeeee; }
+  .exp-num { width: 30px; height: 30px; border-radius: 50%; border: 1.5px solid #999; color: #444; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; flex-shrink: 0; background: #fff; }
+  .exp-num.active-num { background: #8b1a2e; border-color: #8b1a2e; color: #fff; }
+  .exp-title { flex: 1; font-size: 14px; color: #333; }
+  .exp-chevron { color: #999; font-size: 13px; transition: transform 0.2s; }
+  .exp-item.open .exp-chevron { transform: rotate(180deg); }
+  .exp-body { display: none; padding: 0 18px 18px; background: #f5f5f5; }
+  .exp-item.open .exp-body { display: block; }
+
+  /* EMPTY */
+  .empty-msg { background: #fff; border: 1px solid #ddd; border-radius: 4px; padding: 14px 18px; color: #888; font-size: 13px; font-style: italic; margin-bottom: 8px; }
+
+  /* DATA BOX */
+  .data-box { background: #fff; border: 1px solid #ddd; border-radius: 3px; overflow: hidden; margin-top: 6px; }
+  .data-row { display: flex; border-bottom: 1px solid #eee; padding: 9px 14px; font-size: 13.5px; align-items: flex-start; }
+  .data-row:last-child { border-bottom: none; }
+  .data-label { flex: 1; color: #555; padding-right: 12px; }
+  .data-value { text-align: right; font-weight: 600; color: #111; min-width: 200px; }
+  .data-value.light { font-weight: 400; }
+  .data-sub-head { padding: 7px 14px 4px; font-size: 12.5px; color: #666; border-bottom: 1px solid #eee; background: #f9f9f9; }
+  .dl-link { display: flex; align-items: center; justify-content: flex-end; gap: 8px; color: #8b1a2e; font-weight: 600; cursor: pointer; font-size: 13px; }
+  .dl-link:hover { text-decoration: underline; }
+  .dl-icon-box { width: 24px; height: 24px; border: 2px solid #8b1a2e; border-radius: 2px; display: flex; align-items: center; justify-content: center; font-size: 13px; color: #8b1a2e; flex-shrink: 0; }
+
+  /* BOTTOM */
+  .bottom-btns { display: flex; gap: 14px; margin-top: 32px; }
+  .btn-grey { padding: 11px 28px; border-radius: 22px; font-size: 14px; font-weight: 500; cursor: pointer; border: none; background: #b5b5b5; color: #fff; font-family: inherit; transition: background 0.15s; }
+  .btn-grey:hover { background: #999; }
 </style>
 </head>
 <body>
 
-<!-- TOP BAR -->
+<div class="alertbar" id="alertbar">
+  <div class="alertbar-left">
+    <div class="alert-icon">&#9888;</div>
+    <span>Testa paziņojums: tagret blank testiem Links atvērsies jaunā cilnē</span>
+    <a href="#">&#128279;</a>
+  </div>
+  <button class="alertbar-close" onclick="this.closest('.alertbar').style.display='none'">&#215;</button>
+</div>
+
 <div class="topbar">
   <a class="logo">Latv<span class="dot"></span>ja.lv</a>
-
   <div class="topbar-mid">
-    <button class="aaa-btn" title="Teksta izmērs">AAA</button>
-    <div class="contrast-btn" title="Kontrasts"></div>
-    <button class="lang-btn" title="Valoda">EN</button>
+    <button class="aaa-btn">AAA</button>
+    <div class="contrast-btn"></div>
+    <button class="lang-btn">EN</button>
   </div>
-
   <div class="search-wrap">
     <span class="search-icon">&#128269;</span>
     <input class="search-input" type="text" placeholder="Meklēt portālā...">
   </div>
-
-  <div class="user-area" title="Profils">
+  <div class="user-area">
     <div class="user-avatar">&#128100;</div>
     <div class="user-info">
-      <span class="user-name">| Jānis Bērziņš</span>
+      <span class="user-name">Jānis Bērziņš</span>
       <span class="user-role">Fiziska persona</span>
     </div>
     <span class="caret">&#9660;</span>
   </div>
 </div>
 
-<!-- ORANGE NAV -->
 <nav class="mainnav">
-  <a class="home" title="Sākumlapa">&#127968;</a>
+  <a class="home">&#127968;</a>
   <a>Pakalpojumi</a>
   <a>Dzīves situācijas</a>
   <a>E-adrese</a>
 </nav>
 
-<!-- MAIN CONTENT -->
-<div class="content">
+<div class="page">
   <div class="page-title">VDEĀVK dati:</div>
   <div class="person-name">JĀNIS BĒRZIŅŠ</div>
   <div class="person-id">123456-12345</div>
 
-  <!-- Iesniegumi (collapsed) -->
-  <div class="accordion">
-    <div class="accordion-header" onclick="toggleAcc(this)">
-      <span class="acc-toggle">+</span>
-      Iesniegumi
+  <div class="tabs-wrap">
+    <button class="tab active" onclick="switchTab('iesniegumi',this)">Iesniegumi</button>
+    <button class="tab" onclick="switchTab('lemumi',this)">Lēmumi</button>
+    <button class="tab" onclick="switchTab('atzinumi',this)">Atzinumi</button>
+    <button class="tab" onclick="switchTab('apliecibas',this)">Apliecības</button>
+  </div>
+
+  <!-- ═══════════════ IESNIEGUMI ═══════════════ -->
+  <div id="panel-iesniegumi" class="tab-panel active">
+
+    <div class="group-label">Aktīvi</div>
+    <div class="exp-item">
+      <div class="exp-header" onclick="toggleExp(this)">
+        <div class="exp-num active-num">1.</div>
+        <div class="exp-title">Iesniegums Nr. 2025/28964</div>
+        <span class="exp-chevron">&#8964;</span>
+      </div>
+      <div class="exp-body">
+        <div class="data-box">
+          <div class="data-row"><div class="data-label">Reģistrācijas datums VDEĀVK:</div><div class="data-value light">14.08.2025</div></div>
+          <div class="data-row"><div class="data-label">Iesnieguma veids:</div><div class="data-value">Invaliditātes vai darbspēju ekspertīze</div></div>
+          <div class="data-row"><div class="data-label">Statuss</div><div class="data-value">Izskatīšanā</div></div>
+        </div>
+      </div>
     </div>
-    <div class="accordion-body">
-      <div class="decision">
-        <div class="decision-num">Iesnieguma Nr.: 2024/10341</div>
-        <table class="data-table">
-          <tr><td>Datums:</td><td>03.03.2024</td></tr>
-          <tr><td>Statuss:</td><td class="bold-val">Izskatīts</td></tr>
-          <tr><td>Veids:</td><td>Invaliditātes noteikšana</td></tr>
-        </table>
-        <div class="decision-num" style="margin-top:18px;">Iesnieguma Nr.: 2023/88512</div>
-        <table class="data-table">
-          <tr><td>Datums:</td><td>14.06.2023</td></tr>
-          <tr><td>Statuss:</td><td class="bold-val">Izskatīts</td></tr>
-          <tr><td>Veids:</td><td>Darbspēju zaudējuma noteikšana</td></tr>
-        </table>
-        <div class="decision-num" style="margin-top:18px;">Iesnieguma Nr.: 2022/55210</div>
-        <table class="data-table">
-          <tr><td>Datums:</td><td>22.11.2022</td></tr>
-          <tr><td>Statuss:</td><td class="bold-val">Izskatīts</td></tr>
-          <tr><td>Veids:</td><td>Atkārtota invaliditātes pārbaude</td></tr>
-        </table>
+    <div class="exp-item">
+      <div class="exp-header" onclick="toggleExp(this)">
+        <div class="exp-num active-num">2.</div>
+        <div class="exp-title">Iesniegums Nr. 2025/28975</div>
+        <span class="exp-chevron">&#8964;</span>
+      </div>
+      <div class="exp-body">
+        <div class="data-box">
+          <div class="data-row"><div class="data-label">Reģistrācijas datums VDEĀVK:</div><div class="data-value light">20.08.2025</div></div>
+          <div class="data-row"><div class="data-label">Iesnieguma veids:</div><div class="data-value">Atkārtota ekspertīze</div></div>
+          <div class="data-row"><div class="data-label">Statuss</div><div class="data-value">Izskatīšanā</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="group-label">Neaktīvi</div>
+    <div class="exp-item">
+      <div class="exp-header" onclick="toggleExp(this)">
+        <div class="exp-num">1.</div>
+        <div class="exp-title">Iesniegums Nr. 2025/28963</div>
+        <span class="exp-chevron">&#8964;</span>
+      </div>
+      <div class="exp-body">
+        <div class="data-box">
+          <div class="data-row"><div class="data-label">Reģistrācijas datums VDEĀVK:</div><div class="data-value light">13.08.2025</div></div>
+          <div class="data-row"><div class="data-label">Iesnieguma veids:</div><div class="data-value">Invaliditātes vai darbspēju ekspertīze</div></div>
+          <div class="data-row"><div class="data-label">Statuss</div><div class="data-value">Iesniegums izskatīts/Lēmums pieņemts</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="exp-item">
+      <div class="exp-header" onclick="toggleExp(this)">
+        <div class="exp-num">2.</div>
+        <div class="exp-title">Iesniegums Nr. 2025/28976</div>
+        <span class="exp-chevron">&#8964;</span>
+      </div>
+      <div class="exp-body">
+        <div class="data-box">
+          <div class="data-row"><div class="data-label">Reģistrācijas datums VDEĀVK:</div><div class="data-value light">21.08.2025</div></div>
+          <div class="data-row"><div class="data-label">Iesnieguma veids:</div><div class="data-value">Darbspēju zaudējuma noteikšana</div></div>
+          <div class="data-row"><div class="data-label">Statuss</div><div class="data-value">Iesniegums izskatīts/Lēmums pieņemts</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="exp-item">
+      <div class="exp-header" onclick="toggleExp(this)">
+        <div class="exp-num">3.</div>
+        <div class="exp-title">Iesniegums Nr. 2025/28977</div>
+        <span class="exp-chevron">&#8964;</span>
+      </div>
+      <div class="exp-body">
+        <div class="data-box">
+          <div class="data-row"><div class="data-label">Reģistrācijas datums VDEĀVK:</div><div class="data-value light">22.08.2025</div></div>
+          <div class="data-row"><div class="data-label">Iesnieguma veids:</div><div class="data-value">Invaliditātes noteikšana</div></div>
+          <div class="data-row"><div class="data-label">Statuss</div><div class="data-value">Izskatīts</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="exp-item">
+      <div class="exp-header" onclick="toggleExp(this)">
+        <div class="exp-num">4.</div>
+        <div class="exp-title">Iesniegums Nr. 2025/28978</div>
+        <span class="exp-chevron">&#8964;</span>
+      </div>
+      <div class="exp-body">
+        <div class="data-box">
+          <div class="data-row"><div class="data-label">Reģistrācijas datums VDEĀVK:</div><div class="data-value light">23.08.2025</div></div>
+          <div class="data-row"><div class="data-label">Iesnieguma veids:</div><div class="data-value">Atkārtota invaliditātes pārbaude</div></div>
+          <div class="data-row"><div class="data-label">Statuss</div><div class="data-value">Izskatīts</div></div>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- Lēmumi (expanded) -->
-  <div class="accordion">
-    <div class="accordion-header" onclick="toggleAcc(this)">
-      <span class="acc-toggle">−</span>
-      Lēmumi
+  <!-- ═══════════════ LĒMUMI ═══════════════ -->
+  <div id="panel-lemumi" class="tab-panel">
+
+    <div class="group-label">Aktīvi</div>
+    <div class="exp-item">
+      <div class="exp-header" onclick="toggleExp(this)">
+        <div class="exp-num active-num">1.</div>
+        <div class="exp-title">Lēmums Nr. 2025/25719</div>
+        <span class="exp-chevron">&#8964;</span>
+      </div>
+      <div class="exp-body">
+        <div class="data-box">
+          <div class="data-row"><div class="data-label">Datums</div><div class="data-value light">13.08.2025</div></div>
+          <div class="data-row"><div class="data-label">Darbspējas zaudējums:</div><div class="data-value light">75</div></div>
+          <div class="data-row"><div class="data-label">Invaliditāte noteikta:</div><div class="data-value light">Ir</div></div>
+          <div class="data-row"><div class="data-label">Invaliditātes grupa:</div><div class="data-value">OTRĀ (2) GRUPA</div></div>
+          <div class="data-row"><div class="data-label">Invaliditātes vai darbspēju zaudējuma cēlonis:</div><div class="data-value">Arodslimība</div></div>
+          <div class="data-row"><div class="data-label">Funkcionālo traucējumu veids:</div><div class="data-value">Kustību, Psihiskie</div></div>
+          <div class="data-sub-head">Invaliditātes vai darbspēju zaudējuma periods:</div>
+          <div class="data-row"><div class="data-label">Datums no</div><div class="data-value light">13.08.2025</div></div>
+          <div class="data-row"><div class="data-label">Datums līdz</div><div class="data-value light">12.08.2026</div></div>
+          <div class="data-row"><div class="data-label">Spēkā līdz:</div><div class="data-value light">12.08.2026</div></div>
+          <div class="data-row"><div class="data-label">Datne</div><div class="data-value"><div class="dl-link"><div class="dl-icon-box">&#11015;</div>Lejupielādēt lēmuma datni</div></div></div>
+        </div>
+      </div>
     </div>
-    <div class="accordion-body open">
-      <div class="decision">
-        <div class="decision-num">Lēmuma Nr. 2025/52912</div>
-        <table class="data-table">
-          <tr><td>Datums</td><td>29.09.2025</td></tr>
-          <tr><td>Darbspējas zaudējums:</td><td>30</td></tr>
-          <tr><td>Invaliditāte noteikta:</td><td>Ir</td></tr>
-          <tr><td>Invaliditātes grupa:</td><td class="bold-val">TREŠĀ (3) GRUPA</td></tr>
-          <tr><td>Invaliditātes vai darbspēju<br>zaudējuma cēlonis:</td><td class="bold-val">Nelaimes gadījums darbā</td></tr>
-          <tr><td>Funkcionālo traucējumu veids:</td><td class="bold-val">Pārējie</td></tr>
-          <tr class="sub-header"><td colspan="2">Invaliditātes vai darbspēju zaudējuma periods:</td></tr>
-          <tr class="sub-val"><td>Datums no</td><td>29.09.2025</td></tr>
-          <tr class="sub-val"><td>Datums līdz</td><td>28.09.2026</td></tr>
-          <tr><td>Spēkā līdz:</td><td>28.09.2026</td></tr>
-          <tr class="download-row"><td>Datne:</td><td><div class="dl-icon">&#11015;</div><div class="dl-text">Lejupielādēt<br>lēmuma datni</div></td></tr>
-        </table>
 
-        <div class="decision-num" style="margin-top:20px;">Lēmuma Nr. 2024/38710</div>
-        <table class="data-table">
-          <tr><td>Datums</td><td>15.04.2024</td></tr>
-          <tr><td>Darbspējas zaudējums:</td><td>45</td></tr>
-          <tr><td>Invaliditāte noteikta:</td><td>Ir</td></tr>
-          <tr><td>Invaliditātes grupa:</td><td class="bold-val">OTRĀ (2) GRUPA</td></tr>
-          <tr><td>Invaliditātes vai darbspēju<br>zaudējuma cēlonis:</td><td class="bold-val">Slimība</td></tr>
-          <tr><td>Funkcionālo traucējumu veids:</td><td class="bold-val">Pārējie</td></tr>
-          <tr class="sub-header"><td colspan="2">Invaliditātes vai darbspēju zaudējuma periods:</td></tr>
-          <tr class="sub-val"><td>Datums no</td><td>15.04.2024</td></tr>
-          <tr class="sub-val"><td>Datums līdz</td><td>14.04.2025</td></tr>
-          <tr><td>Spēkā līdz:</td><td>14.04.2025</td></tr>
-          <tr class="download-row"><td>Datne:</td><td><div class="dl-icon">&#11015;</div><div class="dl-text">Lejupielādēt<br>lēmuma datni</div></td></tr>
-        </table>
-
-        <div class="decision-num" style="margin-top:20px;">Lēmuma Nr. 2023/21456</div>
-        <table class="data-table">
-          <tr><td>Datums</td><td>08.07.2023</td></tr>
-          <tr><td>Darbspējas zaudējums:</td><td>60</td></tr>
-          <tr><td>Invaliditāte noteikta:</td><td>Ir</td></tr>
-          <tr><td>Invaliditātes grupa:</td><td class="bold-val">PIRMĀ (1) GRUPA</td></tr>
-          <tr><td>Invaliditātes vai darbspēju<br>zaudējuma cēlonis:</td><td class="bold-val">Iedzimta saslimšana</td></tr>
-          <tr><td>Funkcionālo traucējumu veids:</td><td class="bold-val">Garīgie traucējumi</td></tr>
-          <tr class="sub-header"><td colspan="2">Invaliditātes vai darbspēju zaudējuma periods:</td></tr>
-          <tr class="sub-val"><td>Datums no</td><td>08.07.2023</td></tr>
-          <tr class="sub-val"><td>Datums līdz</td><td>Beztermiņa</td></tr>
-          <tr><td>Spēkā līdz:</td><td>Beztermiņa</td></tr>
-          <tr class="download-row"><td>Datne:</td><td><div class="dl-icon">&#11015;</div><div class="dl-text">Lejupielādēt<br>lēmuma datni</div></td></tr>
-        </table>
+    <div class="group-label">Neaktīvi</div>
+    <div class="exp-item">
+      <div class="exp-header" onclick="toggleExp(this)">
+        <div class="exp-num">1.</div>
+        <div class="exp-title">Lēmums Nr. 2024/38710</div>
+        <span class="exp-chevron">&#8964;</span>
+      </div>
+      <div class="exp-body">
+        <div class="data-box">
+          <div class="data-row"><div class="data-label">Datums</div><div class="data-value light">15.04.2024</div></div>
+          <div class="data-row"><div class="data-label">Darbspējas zaudējums:</div><div class="data-value light">45</div></div>
+          <div class="data-row"><div class="data-label">Invaliditāte noteikta:</div><div class="data-value light">Ir</div></div>
+          <div class="data-row"><div class="data-label">Invaliditātes grupa:</div><div class="data-value">TREŠĀ (3) GRUPA</div></div>
+          <div class="data-row"><div class="data-label">Invaliditātes vai darbspēju zaudējuma cēlonis:</div><div class="data-value">Slimība</div></div>
+          <div class="data-row"><div class="data-label">Funkcionālo traucējumu veids:</div><div class="data-value">Pārējie</div></div>
+          <div class="data-sub-head">Invaliditātes vai darbspēju zaudējuma periods:</div>
+          <div class="data-row"><div class="data-label">Datums no</div><div class="data-value light">15.04.2024</div></div>
+          <div class="data-row"><div class="data-label">Datums līdz</div><div class="data-value light">14.04.2025</div></div>
+          <div class="data-row"><div class="data-label">Spēkā līdz:</div><div class="data-value light">14.04.2025</div></div>
+          <div class="data-row"><div class="data-label">Datne</div><div class="data-value"><div class="dl-link"><div class="dl-icon-box">&#11015;</div>Lejupielādēt lēmuma datni</div></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="exp-item">
+      <div class="exp-header" onclick="toggleExp(this)">
+        <div class="exp-num">2.</div>
+        <div class="exp-title">Lēmums Nr. 2023/21456</div>
+        <span class="exp-chevron">&#8964;</span>
+      </div>
+      <div class="exp-body">
+        <div class="data-box">
+          <div class="data-row"><div class="data-label">Datums</div><div class="data-value light">08.07.2023</div></div>
+          <div class="data-row"><div class="data-label">Darbspējas zaudējums:</div><div class="data-value light">60</div></div>
+          <div class="data-row"><div class="data-label">Invaliditāte noteikta:</div><div class="data-value light">Ir</div></div>
+          <div class="data-row"><div class="data-label">Invaliditātes grupa:</div><div class="data-value">PIRMĀ (1) GRUPA</div></div>
+          <div class="data-row"><div class="data-label">Invaliditātes vai darbspēju zaudējuma cēlonis:</div><div class="data-value">Iedzimta saslimšana</div></div>
+          <div class="data-row"><div class="data-label">Funkcionālo traucējumu veids:</div><div class="data-value">Garīgie traucējumi</div></div>
+          <div class="data-sub-head">Invaliditātes vai darbspēju zaudējuma periods:</div>
+          <div class="data-row"><div class="data-label">Datums no</div><div class="data-value light">08.07.2023</div></div>
+          <div class="data-row"><div class="data-label">Datums līdz</div><div class="data-value light">Beztermiņa</div></div>
+          <div class="data-row"><div class="data-label">Spēkā līdz:</div><div class="data-value light">Beztermiņa</div></div>
+          <div class="data-row"><div class="data-label">Datne</div><div class="data-value"><div class="dl-link"><div class="dl-icon-box">&#11015;</div>Lejupielādēt lēmuma datni</div></div></div>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- Atzinumi (collapsed) -->
-  <div class="accordion">
-    <div class="accordion-header" onclick="toggleAcc(this)">
-      <span class="acc-toggle">+</span>
-      Atzinumi
+  <!-- ═══════════════ ATZINUMI ═══════════════ -->
+  <div id="panel-atzinumi" class="tab-panel">
+
+    <div class="group-label">Aktīvi</div>
+    <div class="exp-item">
+      <div class="exp-header" onclick="toggleExp(this)">
+        <div class="exp-num active-num">1.</div>
+        <div class="exp-title">Atzinums Nr. 08-2019-4420-A</div>
+        <span class="exp-chevron">&#8964;</span>
+      </div>
+      <div class="exp-body">
+        <div class="data-box">
+          <div class="data-row"><div class="data-label">Datums</div><div class="data-value light">05.09.2019</div></div>
+          <div class="data-row"><div class="data-label">Veids:</div><div class="data-value">Par tehnisko palīglīdzekļu nepieciešamību</div></div>
+          <div class="data-row"><div class="data-label">Atzinuma lēmums:</div><div class="data-value">Noteikt</div></div>
+          <div class="data-sub-head">Atzinuma darbības periods</div>
+          <div class="data-row"><div class="data-label">Datums no</div><div class="data-value light">05.09.2019</div></div>
+          <div class="data-row"><div class="data-label">Datums līdz</div><div class="data-value light">Beztermiņa</div></div>
+          <div class="data-row"><div class="data-label">Spēkā līdz:</div><div class="data-value light">Beztermiņa</div></div>
+        </div>
+      </div>
     </div>
-    <div class="accordion-body">
-      <div class="decision">
 
-        <div class="decision-num">Atzinuma Nr. 21-2023-2665-A</div>
-        <table class="data-table">
-          <tr><td>Datums</td><td>22.08.2023</td></tr>
-          <tr><td>Veids:</td><td class="bold-val">Par īpašas kopšanas nepieciešamību</td></tr>
-          <tr><td>Atzinuma lēmums:</td><td class="bold-val">Noteikt</td></tr>
-          <tr class="sub-header"><td colspan="2">Atzinuma darbības periods</td></tr>
-          <tr class="sub-val"><td>Datums no</td><td>05.07.2023</td></tr>
-          <tr class="sub-val"><td>Datums līdz</td><td>04.07.2025</td></tr>
-          <tr><td>Spēkā līdz:</td><td>04.07.2025</td></tr>
-        </table>
-
-        <div class="decision-num" style="margin-top:20px;">Atzinuma Nr. 35-2020-313-A</div>
-        <table class="data-table">
-          <tr><td>Datums</td><td>17.03.2020</td></tr>
-          <tr><td>Veids:</td><td class="bold-val">Par medicīniskajām indikācijām vieglā automobiļa speciālai pielāgošanai un pabalsta saņemšanai transporta izdevumu kompensēšanai</td></tr>
-          <tr><td>Atzinuma lēmums:</td><td class="bold-val">Nenoteikt</td></tr>
-          <tr><td>Spēkā līdz:</td><td></td></tr>
-        </table>
-
-        <div class="decision-num" style="margin-top:20px;">Atzinuma Nr. 12-2021-0891-B</div>
-        <table class="data-table">
-          <tr><td>Datums</td><td>10.01.2021</td></tr>
-          <tr><td>Veids:</td><td class="bold-val">Par asistenta pakalpojuma nepieciešamību</td></tr>
-          <tr><td>Atzinuma lēmums:</td><td class="bold-val">Noteikt</td></tr>
-          <tr class="sub-header"><td colspan="2">Atzinuma darbības periods</td></tr>
-          <tr class="sub-val"><td>Datums no</td><td>01.02.2021</td></tr>
-          <tr class="sub-val"><td>Datums līdz</td><td>31.01.2023</td></tr>
-          <tr><td>Spēkā līdz:</td><td>31.01.2023</td></tr>
-        </table>
-
-        <div class="decision-num" style="margin-top:20px;">Atzinuma Nr. 08-2019-4420-A</div>
-        <table class="data-table">
-          <tr><td>Datums</td><td>05.09.2019</td></tr>
-          <tr><td>Veids:</td><td class="bold-val">Par tehnisko palīglīdzekļu nepieciešamību</td></tr>
-          <tr><td>Atzinuma lēmums:</td><td class="bold-val">Noteikt</td></tr>
-          <tr class="sub-header"><td colspan="2">Atzinuma darbības periods</td></tr>
-          <tr class="sub-val"><td>Datums no</td><td>05.09.2019</td></tr>
-          <tr class="sub-val"><td>Datums līdz</td><td>Beztermiņa</td></tr>
-          <tr><td>Spēkā līdz:</td><td>Beztermiņa</td></tr>
-        </table>
-
+    <div class="group-label">Neaktīvi</div>
+    <div class="exp-item">
+      <div class="exp-header" onclick="toggleExp(this)">
+        <div class="exp-num">1.</div>
+        <div class="exp-title">Atzinums Nr. 21-2023-2665-A</div>
+        <span class="exp-chevron">&#8964;</span>
+      </div>
+      <div class="exp-body">
+        <div class="data-box">
+          <div class="data-row"><div class="data-label">Datums</div><div class="data-value light">22.08.2023</div></div>
+          <div class="data-row"><div class="data-label">Veids:</div><div class="data-value">Par īpašas kopšanas nepieciešamību</div></div>
+          <div class="data-row"><div class="data-label">Atzinuma lēmums:</div><div class="data-value">Noteikt</div></div>
+          <div class="data-sub-head">Atzinuma darbības periods</div>
+          <div class="data-row"><div class="data-label">Datums no</div><div class="data-value light">05.07.2023</div></div>
+          <div class="data-row"><div class="data-label">Datums līdz</div><div class="data-value light">04.07.2025</div></div>
+          <div class="data-row"><div class="data-label">Spēkā līdz:</div><div class="data-value light">04.07.2025</div></div>
+          <div class="data-row"><div class="data-label">Datne</div><div class="data-value"><div class="dl-link"><div class="dl-icon-box">&#11015;</div>Lejupielādēt lēmuma datni</div></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="exp-item">
+      <div class="exp-header" onclick="toggleExp(this)">
+        <div class="exp-num">2.</div>
+        <div class="exp-title">Atzinums Nr. 12-2021-0891-B</div>
+        <span class="exp-chevron">&#8964;</span>
+      </div>
+      <div class="exp-body">
+        <div class="data-box">
+          <div class="data-row"><div class="data-label">Datums</div><div class="data-value light">10.01.2021</div></div>
+          <div class="data-row"><div class="data-label">Veids:</div><div class="data-value">Par asistenta pakalpojuma nepieciešamību</div></div>
+          <div class="data-row"><div class="data-label">Atzinuma lēmums:</div><div class="data-value">Noteikt</div></div>
+          <div class="data-sub-head">Atzinuma darbības periods</div>
+          <div class="data-row"><div class="data-label">Datums no</div><div class="data-value light">01.02.2021</div></div>
+          <div class="data-row"><div class="data-label">Datums līdz</div><div class="data-value light">31.01.2023</div></div>
+          <div class="data-row"><div class="data-label">Spēkā līdz:</div><div class="data-value light">31.01.2023</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="exp-item">
+      <div class="exp-header" onclick="toggleExp(this)">
+        <div class="exp-num">3.</div>
+        <div class="exp-title">Atzinums Nr. 35-2020-313-A</div>
+        <span class="exp-chevron">&#8964;</span>
+      </div>
+      <div class="exp-body">
+        <div class="data-box">
+          <div class="data-row"><div class="data-label">Datums</div><div class="data-value light">17.03.2020</div></div>
+          <div class="data-row"><div class="data-label">Veids:</div><div class="data-value">Par medicīniskajām indikācijām vieglā automobiļa speciālai pielāgošanai un pabalsta saņemšanai transporta izdevumu kompensēšanai</div></div>
+          <div class="data-row"><div class="data-label">Atzinuma lēmums:</div><div class="data-value">Nenoteikt</div></div>
+          <div class="data-row"><div class="data-label">Spēkā līdz:</div><div class="data-value light">—</div></div>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- Apliecības (collapsed) -->
-  <div class="accordion">
-    <div class="accordion-header" onclick="toggleAcc(this)">
-      <span class="acc-toggle">+</span>
-      Apliecības
+  <!-- ═══════════════ APLIECĪBAS ═══════════════ -->
+  <div id="panel-apliecibas" class="tab-panel">
+
+    <div class="group-label">Aktīvi</div>
+    <div class="exp-item">
+      <div class="exp-header" onclick="toggleExp(this)">
+        <div class="exp-num active-num">1.</div>
+        <div class="exp-title">Apliecība Nr. 143630</div>
+        <span class="exp-chevron">&#8964;</span>
+      </div>
+      <div class="exp-body">
+        <div class="data-box">
+          <div class="data-row"><div class="data-label">Saistītā invaliditātes lēmuma Nr.:</div><div class="data-value light">2026/21631</div></div>
+          <div class="data-row"><div class="data-label">Invaliditātes grupa:</div><div class="data-value">OTRĀ (2) GRUPA</div></div>
+          <div class="data-sub-head">Termiņš (Invaliditātes periods)</div>
+          <div class="data-row"><div class="data-label">Datums no</div><div class="data-value light">12.05.2026</div></div>
+          <div class="data-row"><div class="data-label">Datums līdz</div><div class="data-value">Beztermiņa</div></div>
+          <div class="data-row"><div class="data-label">Apliecība izsniegta:</div><div class="data-value light">14.05.2026</div></div>
+        </div>
+      </div>
     </div>
-    <div class="accordion-body">
-      <div class="decision">
 
-        <div class="decision-num">Apliecības Nr.: 143630</div>
-        <table class="data-table">
-          <tr><td>Saistītā invaliditātes lēmuma Nr.:</td><td>2026/21631</td></tr>
-          <tr><td>Invaliditātes grupa:</td><td class="bold-val">OTRĀ (2) GRUPA</td></tr>
-          <tr class="sub-header"><td colspan="2">Termiņš (Invaliditātes periods)</td></tr>
-          <tr class="sub-val"><td>Datums no</td><td>12.05.2026</td></tr>
-          <tr class="sub-val"><td>Datums līdz</td><td class="bold-val">Beztermiņa</td></tr>
-          <tr><td>Apliecība izsniegta:</td><td>14.05.2026</td></tr>
-        </table>
-
-        <div class="decision-num" style="margin-top:20px;">Apliecības Nr.: 114954</div>
-        <table class="data-table">
-          <tr><td>Saistītā invaliditātes lēmuma Nr.:</td><td>2025/63482</td></tr>
-          <tr><td>Invaliditātes grupa:</td><td class="bold-val">PIRMĀ (1) GRUPA</td></tr>
-          <tr class="sub-header"><td colspan="2">Termiņš (Invaliditātes periods)</td></tr>
-          <tr class="sub-val"><td>Datums no</td><td>01.10.2025</td></tr>
-          <tr class="sub-val"><td>Datums līdz</td><td>30.09.2026</td></tr>
-          <tr><td>Apliecība izsniegta:</td><td>05.10.2025</td></tr>
-        </table>
-
-        <div class="decision-num" style="margin-top:20px;">Apliecības Nr.: 098231</div>
-        <table class="data-table">
-          <tr><td>Saistītā invaliditātes lēmuma Nr.:</td><td>2024/38710</td></tr>
-          <tr><td>Invaliditātes grupa:</td><td class="bold-val">OTRĀ (2) GRUPA</td></tr>
-          <tr class="sub-header"><td colspan="2">Termiņš (Invaliditātes periods)</td></tr>
-          <tr class="sub-val"><td>Datums no</td><td>15.04.2024</td></tr>
-          <tr class="sub-val"><td>Datums līdz</td><td>14.04.2025</td></tr>
-          <tr><td>Apliecība izsniegta:</td><td>18.04.2024</td></tr>
-        </table>
-
-        <div class="decision-num" style="margin-top:20px;">Apliecības Nr.: 076540</div>
-        <table class="data-table">
-          <tr><td>Saistītā invaliditātes lēmuma Nr.:</td><td>2023/21456</td></tr>
-          <tr><td>Invaliditātes grupa:</td><td class="bold-val">PIRMĀ (1) GRUPA</td></tr>
-          <tr class="sub-header"><td colspan="2">Termiņš (Invaliditātes periods)</td></tr>
-          <tr class="sub-val"><td>Datums no</td><td>08.07.2023</td></tr>
-          <tr class="sub-val"><td>Datums līdz</td><td class="bold-val">Beztermiņa</td></tr>
-          <tr><td>Apliecība izsniegta:</td><td>12.07.2023</td></tr>
-        </table>
-
+    <div class="group-label">Neaktīvi</div>
+    <div class="exp-item">
+      <div class="exp-header" onclick="toggleExp(this)">
+        <div class="exp-num">1.</div>
+        <div class="exp-title">Apliecība Nr. 114954</div>
+        <span class="exp-chevron">&#8964;</span>
+      </div>
+      <div class="exp-body">
+        <div class="data-box">
+          <div class="data-row"><div class="data-label">Saistītā invaliditātes lēmuma Nr.:</div><div class="data-value light">2025/63482</div></div>
+          <div class="data-row"><div class="data-label">Invaliditātes grupa:</div><div class="data-value">PIRMĀ (1) GRUPA</div></div>
+          <div class="data-sub-head">Termiņš (Invaliditātes periods)</div>
+          <div class="data-row"><div class="data-label">Datums no</div><div class="data-value light">01.10.2025</div></div>
+          <div class="data-row"><div class="data-label">Datums līdz</div><div class="data-value light">30.09.2026</div></div>
+          <div class="data-row"><div class="data-label">Apliecība izsniegta:</div><div class="data-value light">05.10.2025</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="exp-item">
+      <div class="exp-header" onclick="toggleExp(this)">
+        <div class="exp-num">2.</div>
+        <div class="exp-title">Apliecība Nr. 098231</div>
+        <span class="exp-chevron">&#8964;</span>
+      </div>
+      <div class="exp-body">
+        <div class="data-box">
+          <div class="data-row"><div class="data-label">Saistītā invaliditātes lēmuma Nr.:</div><div class="data-value light">2024/38710</div></div>
+          <div class="data-row"><div class="data-label">Invaliditātes grupa:</div><div class="data-value">OTRĀ (2) GRUPA</div></div>
+          <div class="data-sub-head">Termiņš (Invaliditātes periods)</div>
+          <div class="data-row"><div class="data-label">Datums no</div><div class="data-value light">15.04.2024</div></div>
+          <div class="data-row"><div class="data-label">Datums līdz</div><div class="data-value light">14.04.2025</div></div>
+          <div class="data-row"><div class="data-label">Apliecība izsniegta:</div><div class="data-value light">18.04.2024</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="exp-item">
+      <div class="exp-header" onclick="toggleExp(this)">
+        <div class="exp-num">3.</div>
+        <div class="exp-title">Apliecība Nr. 076540</div>
+        <span class="exp-chevron">&#8964;</span>
+      </div>
+      <div class="exp-body">
+        <div class="data-box">
+          <div class="data-row"><div class="data-label">Saistītā invaliditātes lēmuma Nr.:</div><div class="data-value light">2023/21456</div></div>
+          <div class="data-row"><div class="data-label">Invaliditātes grupa:</div><div class="data-value">PIRMĀ (1) GRUPA</div></div>
+          <div class="data-sub-head">Termiņš (Invaliditātes periods)</div>
+          <div class="data-row"><div class="data-label">Datums no</div><div class="data-value light">08.07.2023</div></div>
+          <div class="data-row"><div class="data-label">Datums līdz</div><div class="data-value">Beztermiņa</div></div>
+          <div class="data-row"><div class="data-label">Apliecība izsniegta:</div><div class="data-value light">12.07.2023</div></div>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- Apakšējās pogas -->
   <div class="bottom-btns">
-    <button class="btn-red">Pieprasīt datus par citu personu</button>
-    <button class="btn-red">Pabeigt</button>
+    <button class="btn-grey">Atpakaļ</button>
+    <button class="btn-grey">Iziet no e-pakalpojuma</button>
   </div>
-
 </div>
 
 <script>
-  function toggleAcc(header) {
-    const body = header.nextElementSibling;
-    const toggle = header.querySelector('.acc-toggle');
-    const isOpen = body.classList.contains('open');
-    body.classList.toggle('open', !isOpen);
-    toggle.textContent = isOpen ? '+' : '−';
-  }
+function switchTab(id, el) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('panel-' + id).classList.add('active');
+  el.classList.add('active');
+}
+function toggleExp(header) {
+  const item = header.parentElement;
+  item.classList.toggle('open');
+}
 </script>
 </body>
 </html>
