@@ -120,28 +120,38 @@ body { font-family: 'Segoe UI', Arial, sans-serif; font-size: 14px; color: #222;
 .dl-icon-box { width: 24px; height: 24px; border: 2px solid #8b1a2e; border-radius: 2px; display: flex; align-items: center; justify-content: center; font-size: 13px; color: #8b1a2e; flex-shrink: 0; }
 
 .item-actions { display: flex; flex-direction: column; gap: 6px; margin-top: 10px; align-items: flex-start; }
-.btn-action { padding: 9px 22px; border-radius: 20px; font-size: 13px; font-weight: 600; cursor: pointer; font-family: inherit; background: #8b1a2e; color: #fff; border: none; transition: background 0.15s; }
-.btn-action:hover { background: #6e1524; }
-.btn-action.disabled { background: #ccc; color: #fff; cursor: default; }
-.btn-action.disabled:hover { background: #ccc; }
+.btn-action { padding: 9px 24px; border-radius: 22px; font-size: 13px; font-weight: 600; cursor: pointer; font-family: inherit; background: #8b1a2e; color: #fff; border: 2px solid #8b1a2e; transition: background 0.15s; }
+.btn-action:hover { background: #6e1524; border-color: #6e1524; }
+.btn-action.disabled { background: #fff; color: #aaa; border-color: #ccc; cursor: default; }
+.btn-action.disabled:hover { background: #fff; }
 .action-note { font-size: 12px; color: #777; font-style: italic; }
 .neaktivi-note { font-size: 12px; color: #777; font-style: italic; padding: 6px 0 2px; }
 .next-tab-wrap { margin-top: 16px; }
 .btn-next-tab { padding: 10px 28px; border-radius: 22px; font-size: 14px; font-weight: 600; cursor: pointer; border: none; background: #8b1a2e; color: #fff; font-family: inherit; transition: background 0.15s; }
 .btn-next-tab:hover { background: #6e1524; }
 
+/* Tab nav buttons */
+.tab-nav-btns { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; padding-top: 16px; border-top: 1px solid #eee; }
+/* SDK: btn btn-border btn-border-red / btn btn-danger btn-rounded btn-md */
+.btn-tab-nav { padding: 8px 18px; border-radius: 22px; font-size: 13px; font-weight: 500; cursor: pointer; font-family: inherit; border: 1.5px solid #8b1a2e; background: #fff; color: #8b1a2e; transition: background 0.15s, color 0.15s; }
+.btn-tab-nav:hover { background: #fdf5f6; }
+.btn-tab-nav.current { background: #8b1a2e; color: #fff; cursor: default; border-color: #8b1a2e; font-weight: 600; }
+
 .answer-label { font-size: 12px; font-weight: 700; color: #8b1a2e; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 14px; margin-bottom: 4px; }
 
 .empty-state { background: #fff; border: 1px solid #ddd; border-radius: 4px; padding: 14px 18px; color: #888; font-size: 13px; font-style: italic; margin-bottom: 8px; }
 .no-data-msg { background: #fff5f5; border: 1px solid #f5c6cb; border-radius: 6px; padding: 18px 20px; color: #721c24; font-size: 14px; margin-top: 20px; }
 
-.bottom-btns { display: flex; gap: 14px; margin-top: 32px; }
-.btn-grey { padding: 11px 28px; border-radius: 22px; font-size: 14px; font-weight: 500; cursor: pointer; border: none; background: #b5b5b5; color: #fff; font-family: inherit; transition: background 0.15s; }
-.btn-grey:hover { background: #999; }
-.btn-talak { padding: 11px 28px; border-radius: 22px; font-size: 14px; font-weight: 600; cursor: pointer; border: none; background: #8b1a2e; color: #fff; font-family: inherit; transition: background 0.15s; }
-.btn-talak:hover { background: #6e1524; }
-.btn-atpakal { padding: 11px 28px; border-radius: 22px; font-size: 14px; font-weight: 500; cursor: pointer; border: none; background: #ccc; color: #fff; font-family: inherit; }
-.btn-atpakal:hover { background: #aaa; }
+.bottom-btns { display: flex; gap: 12px; margin-top: 32px; flex-wrap: wrap; align-items: center; }
+/* SDK: btn btn-danger btn-rounded btn-md — primary filled red */
+.btn-grey { padding: 10px 24px; border-radius: 22px; font-size: 14px; font-weight: 500; cursor: pointer; border: none; background: #c8c8c8; color: #fff; font-family: inherit; transition: background 0.15s; }
+.btn-grey:hover { background: #b0b0b0; }
+/* SDK: btn btn-danger btn-rounded btn-md */
+.btn-talak { padding: 10px 28px; border-radius: 22px; font-size: 14px; font-weight: 600; cursor: pointer; border: 2px solid #8b1a2e; background: #8b1a2e; color: #fff; font-family: inherit; transition: background 0.15s; }
+.btn-talak:hover { background: #6e1524; border-color: #6e1524; }
+/* SDK: btn btn-border btn-border-red colored-text */
+.btn-atpakal { padding: 10px 24px; border-radius: 22px; font-size: 14px; font-weight: 500; cursor: pointer; border: none; background: #c8c8c8; color: #fff; font-family: inherit; transition: background 0.15s; }
+.btn-atpakal:hover { background: #b0b0b0; }
 
 .fp-section { margin-top: 28px; border: 1px solid #ddd; border-radius: 6px; overflow: hidden; }
 .fp-title { display: flex; align-items: center; justify-content: space-between; padding: 14px 20px; background: #f5f5f5; cursor: pointer; font-size: 14px; font-weight: 700; color: #1a1a1a; user-select: none; }
@@ -215,9 +225,10 @@ body { font-family: 'Segoe UI', Arial, sans-serif; font-size: 14px; color: #222;
       <label class="radio-opt"><input type="radio" name="persona" value="janis" checked> Par sevi</label>
       <label class="radio-opt"><input type="radio" name="persona" value="anna"> Anna Bērziņa</label>
       <label class="radio-opt"><input type="radio" name="persona" value="maris"> Māris Krūmiņš</label>
+      <label class="radio-opt"><input type="radio" name="persona" value="peteris"> Pēteris Ozols</label>
     </div>
     <div class="s2-actions">
-      <button class="btn-atpakal" onclick="goTo('screen1')">Atpakaļ</button>
+      <button class="btn-atpakal" onclick="goTo('screen1')">Atpakaļ uz pakalpojuma izvēli</button>
       <button class="btn-talak" onclick="goTo('screen3')">Tālāk</button>
     </div>
     <div class="s2-error">
@@ -255,8 +266,8 @@ body { font-family: 'Segoe UI', Arial, sans-serif; font-size: 14px; color: #222;
       <div id="panel-apliecibas" class="tab-panel"></div>
     </div>
     <div class="bottom-btns">
-      <button class="btn-grey" onclick="goTo('screen2')">Atpakaļ</button>
-      <button class="btn-grey">Iziet no e-pakalpojuma</button>
+      <button class="btn-grey" onclick="goTo('screen2')">Atpakaļ uz pakalpojuma izvēli</button>
+      <button class="btn-grey" onclick="goTo('screen1')">Iziet no e-pakalpojuma</button>
     </div>
     <div class="fp-section">
       <div class="fp-title" onclick="this.parentElement.classList.toggle('open')">
@@ -332,7 +343,8 @@ function isDNL26(datNo, datLidz) {
 const PERSONAS = {
   janis: { vards:null, kods:null, hasData:true },
   anna:  { vards:'ANNA BĒRZIŅA', kods:'111111-11111', hasData:false },
-  maris: { vards:'MĀRIS KRŪMIŅŠ', kods:'222222-22222', hasData:true }
+  maris: { vards:'MĀRIS KRŪMIŅŠ', kods:'222222-22222', hasData:true },
+  peteris: { vards:'PĒTERIS OZOLS', kods:'300559-10026', hasData:true }
 };
 
 const DATA = {
@@ -367,6 +379,44 @@ const DATA = {
     ]
   },
   anna: null,
+
+  peteris: {
+    lemumi: [
+      { nr:'2026/21631', datums:'12.05.2026', darbspZaud:null, invalidNoteikta:'Ir', grupa:'OTRĀ (2) GRUPA', celonis:'Slimība', funkTrVeids:'Redzes', datNo:'12.05.2026', datLidz:'Uz mūžu', spekaLidz:'Uz mūžu' },
+      { nr:'2025/63482', datums:'12.11.2025', darbspZaud:null, invalidNoteikta:'Ir', grupa:'PIRMĀ (1) GRUPA', celonis:'Slimība', funkTrVeids:'Kustību, Pārējie', datNo:'02.10.2025', datLidz:'01.10.2030', spekaLidz:'01.10.2030' },
+      { nr:'35-2020-391', datums:'04.02.2020', darbspZaud:30,   invalidNoteikta:'Ir', grupa:'TREŠĀ (3) GRUPA', celonis:'Arodslimība', funkTrVeids:null, datNo:'06.01.2020', datLidz:'Uz mūžu', spekaLidz:'Uz mūžu' },
+      { nr:'21-2023-5250', datums:'22.08.2023', darbspZaud:null, invalidNoteikta:'Ir', grupa:'PIRMĀ (1) GRUPA', celonis:'Slimība', funkTrVeids:null, datNo:'05.07.2023', datLidz:'04.07.2025', spekaLidz:'04.07.2025' },
+      { nr:'35-2020-389', datums:'04.02.2020', darbspZaud:null, invalidNoteikta:'Ir', grupa:'OTRĀ (2) GRUPA', celonis:'Slimība', funkTrVeids:null, datNo:'30.01.2020', datLidz:'04.07.2023', spekaLidz:'04.07.2023' },
+      { nr:'35-2018-1153', datums:'14.03.2018', darbspZaud:null, invalidNoteikta:'Ir', grupa:'OTRĀ (2) GRUPA', celonis:'Slimība', funkTrVeids:null, datNo:'30.01.2018', datLidz:'29.01.2020', spekaLidz:'29.01.2020' },
+      { nr:'35-2015-344', datums:'02.02.2015', darbspZaud:30,   invalidNoteikta:'Ir', grupa:'TREŠĀ (3) GRUPA', celonis:'Arodslimība', funkTrVeids:'Kustību', datNo:'06.01.2015', datLidz:'05.01.2020', spekaLidz:'05.01.2020' },
+      { nr:'35-2013-58',  datums:'01.02.2013', darbspZaud:30,   invalidNoteikta:'Ir', grupa:'TREŠĀ (3) GRUPA', celonis:'Arodslimība', funkTrVeids:null, datNo:'07.01.2013', datLidz:'06.01.2015', spekaLidz:'06.01.2015' },
+      { nr:'35-2012-103', datums:'11.01.2012', darbspZaud:30,   invalidNoteikta:'Ir', grupa:'TREŠĀ (3) GRUPA', celonis:'Arodslimība', funkTrVeids:'Pārējie', datNo:'11.01.2012', datLidz:'10.01.2013', spekaLidz:'10.01.2013' },
+      { nr:'1672',  datums:'13.09.2001', darbspZaud:null, invalidNoteikta:'Nav', grupa:null, celonis:'Nav', funkTrVeids:null, datNo:'13.09.2001', datLidz:null, spekaLidz:null },
+      { nr:'763',   datums:'10.04.2003', darbspZaud:null, invalidNoteikta:'Nav', grupa:null, celonis:'Nav', funkTrVeids:null, datNo:'10.04.2003', datLidz:null, spekaLidz:null },
+      { nr:'1491',  datums:'28.09.2001', darbspZaud:null, invalidNoteikta:'Nav', grupa:null, celonis:'Nav', funkTrVeids:null, datNo:'28.09.2001', datLidz:null, spekaLidz:null },
+    ],
+    atzinumi: [
+      { nr:'2026/12401',    datums:'12.05.2026', veids:'Par medicīniskajām indikācijām vieglā automobiļa speciālai pielāgošanai un pabalsta saņemšanai transporta izdevumu kompensēšanai', lemums:'Noteikt', datNo:'12.05.2026', datLidz:'Uz mūžu', spekaLidz:null },
+      { nr:'2025/36436',    datums:'12.11.2025', veids:'Par īpašas kopšanas nepieciešamību', lemums:'Noteikt', datNo:'02.10.2025', datLidz:'01.10.2030', spekaLidz:'01.10.2030' },
+      { nr:'2025/36437',    datums:'12.11.2025', veids:'Par medicīniskajām indikācijām vieglā automobiļa speciālai pielāgošanai un pabalsta saņemšanai transporta izdevumu kompensēšanai', lemums:'Noteikt', datNo:'02.10.2025', datLidz:'11.05.2026', spekaLidz:'11.05.2026' },
+      { nr:'21-2023-2665-A-1', datums:'22.08.2023', veids:'Par medicīniskajām indikācijām vieglā automobiļa speciālai pielāgošanai un pabalsta saņemšanai transporta izdevumu kompensēšanai', lemums:'Noteikt', datNo:'05.07.2023', datLidz:'04.07.2025', spekaLidz:'04.07.2025' },
+      { nr:'21-2023-2665-A-2', datums:'22.08.2023', veids:'Par īpašas kopšanas nepieciešamību', lemums:'Noteikt', datNo:'05.07.2023', datLidz:'04.07.2025', spekaLidz:'04.07.2025' },
+      { nr:'35-2020-313-A',    datums:'17.03.2020', veids:'Par medicīniskajām indikācijām vieglā automobiļa speciālai pielāgošanai un pabalsta saņemšanai transporta izdevumu kompensēšanai', lemums:'Nenoteikt', datNo:'10.02.2020', datLidz:null, spekaLidz:null },
+    ],
+    apliecibas: [
+      { nr:'143630', lemumaNr:'2026/21631', grupa:'OTRĀ (2) GRUPA',  izsniegta:'14.05.2026', datNo:'12.05.2026', datLidz:'Uz mūžu', statuss:'Spēkā/Izdrukāta' },
+      { nr:'143624', lemumaNr:'35-2020-391', grupa:'TREŠĀ (3) GRUPA', izsniegta:'12.05.2026', datNo:'06.01.2020', datLidz:'Uz mūžu', statuss:'Spēkā/Izdrukāta' },
+      { nr:'114954', lemumaNr:'2025/63482', grupa:'PIRMĀ (1) GRUPA', izsniegta:'13.11.2025', datNo:'02.10.2025', datLidz:'01.10.2030', statuss:'Spēkā/Izdrukāta' },
+    ],
+    iesniegumi: [
+      { nr:'2026/23880', regDat:'12.05.2026', veids:'Invaliditātes vai darbspēju ekspertīze',          statuss:'Iesniegums izskatīts/Lēmums pieņemts', apstrideTips:null, apstrideNr:null, atbildeTips:'lemums', atbildeNr:'2026/21631' },
+      { nr:'2026/23877', regDat:'12.05.2026', veids:'Atkārtota invaliditātes apliecības izsniegšana',  statuss:'Iesniegums izskatīts/Lēmums pieņemts', apstrideTips:null, apstrideNr:null, atbildeTips:'lemums', atbildeNr:'2026/21631' },
+      { nr:'2025/62584', regDat:'02.10.2025', veids:'Invaliditātes vai darbspēju ekspertīze',          statuss:'Iesniegums izskatīts/Lēmums pieņemts', apstrideTips:null, apstrideNr:null, atbildeTips:'lemums', atbildeNr:'2025/63482' },
+    ]
+  }
+};
+
+const _MARIS_PLACEHOLDER = {
   maris: {
     lemumi: [
       { nr:'2026/10045', datums:'10.03.2026', darbspZaud:50, invalidNoteikta:'Ir', grupa:'TREŠĀ (3) GRUPA', celonis:'Nelaimes gadījums darbā', funkTrVeids:'Kustību traucējumi', datNo:'10.03.2026', datLidz:'09.03.2027', spekaLidz:'09.03.2027' },
@@ -384,9 +434,42 @@ const DATA = {
       { nr:'2026/10012', regDat:'08.03.2026', veids:'Invaliditātes vai darbspēju ekspertīze', statuss:'Iesniegums izskatīts/Lēmums pieņemts', apstrideTips:null, apstrideNr:null, atbildeTips:'lemums', atbildeNr:'2026/10045' },
       { nr:'2024/55001', regDat:'01.11.2024', veids:'Invaliditātes vai darbspēju ekspertīze', statuss:'Iesniegums izskatīts/Lēmums pieņemts', apstrideTips:null, apstrideNr:null, atbildeTips:'lemums', atbildeNr:'2024/55210' },
     ]
+  },
+  peteris: {
+    lemumi: [
+      { nr:'2026/21631',   datums:'12.05.2026', darbspZaud:null, invalidNoteikta:'Ir',  grupa:'OTRĀ (2) GRUPA',   celonis:'Slimība',    funkTrVeids:'Redzes',         datNo:'12.05.2026', datLidz:'Uz mūžu',    spekaLidz:'Uz mūžu' },
+      { nr:'2025/63482',   datums:'12.11.2025', darbspZaud:null, invalidNoteikta:'Ir',  grupa:'PIRMĀ (1) GRUPA',  celonis:'Slimība',    funkTrVeids:'Kustību, Pārējie', datNo:'02.10.2025', datLidz:'01.10.2030', spekaLidz:'01.10.2030' },
+      { nr:'35-2020-391',  datums:'04.02.2020', darbspZaud:30,   invalidNoteikta:'Ir',  grupa:'TREŠĀ (3) GRUPA',  celonis:'Arodslimība',funkTrVeids:null,              datNo:'06.01.2020', datLidz:'Uz mūžu',    spekaLidz:'Uz mūžu' },
+      { nr:'21-2023-5250', datums:'22.08.2023', darbspZaud:null, invalidNoteikta:'Ir',  grupa:'PIRMĀ (1) GRUPA',  celonis:'Slimība',    funkTrVeids:null,              datNo:'05.07.2023', datLidz:'04.07.2025', spekaLidz:'04.07.2025' },
+      { nr:'35-2020-389',  datums:'04.02.2020', darbspZaud:null, invalidNoteikta:'Ir',  grupa:'OTRĀ (2) GRUPA',   celonis:'Slimība',    funkTrVeids:null,              datNo:'30.01.2020', datLidz:'04.07.2023', spekaLidz:'04.07.2023' },
+      { nr:'35-2018-1153', datums:'14.03.2018', darbspZaud:null, invalidNoteikta:'Ir',  grupa:'OTRĀ (2) GRUPA',   celonis:'Slimība',    funkTrVeids:null,              datNo:'30.01.2018', datLidz:'29.01.2020', spekaLidz:'29.01.2020' },
+      { nr:'35-2015-344',  datums:'02.02.2015', darbspZaud:30,   invalidNoteikta:'Ir',  grupa:'TREŠĀ (3) GRUPA',  celonis:'Arodslimība',funkTrVeids:'Kustību',         datNo:'06.01.2015', datLidz:'05.01.2020', spekaLidz:'05.01.2020' },
+      { nr:'35-2013-58',   datums:'01.02.2013', darbspZaud:30,   invalidNoteikta:'Ir',  grupa:'TREŠĀ (3) GRUPA',  celonis:'Arodslimība',funkTrVeids:null,              datNo:'07.01.2013', datLidz:'06.01.2015', spekaLidz:'06.01.2015' },
+      { nr:'35-2012-103',  datums:'11.01.2012', darbspZaud:30,   invalidNoteikta:'Ir',  grupa:'TREŠĀ (3) GRUPA',  celonis:'Arodslimība',funkTrVeids:'Pārējie',         datNo:'11.01.2012', datLidz:'10.01.2013', spekaLidz:'10.01.2013' },
+      { nr:'1672',         datums:'13.09.2001', darbspZaud:null, invalidNoteikta:'Nav', grupa:null,               celonis:'Nav',        funkTrVeids:null,              datNo:'13.09.2001', datLidz:null,         spekaLidz:null },
+      { nr:'763',          datums:'10.04.2003', darbspZaud:null, invalidNoteikta:'Nav', grupa:null,               celonis:'Nav',        funkTrVeids:null,              datNo:'10.04.2003', datLidz:null,         spekaLidz:null },
+      { nr:'1491',         datums:'28.09.2001', darbspZaud:null, invalidNoteikta:'Nav', grupa:null,               celonis:'Nav',        funkTrVeids:null,              datNo:'28.09.2001', datLidz:null,         spekaLidz:null },
+    ],
+    atzinumi: [
+      { nr:'2026/12401',       datums:'12.05.2026', veids:'Par medicīniskajām indikācijām vieglā automobiļa speciālai pielāgošanai un pabalsta saņemšanai transporta izdevumu kompensēšanai', lemums:'Noteikt',   datNo:'12.05.2026', datLidz:'Uz mūžu',    spekaLidz:null },
+      { nr:'2025/36436',       datums:'12.11.2025', veids:'Par īpašas kopšanas nepieciešamību',                                                                                               lemums:'Noteikt',   datNo:'02.10.2025', datLidz:'01.10.2030', spekaLidz:'01.10.2030' },
+      { nr:'2025/36437',       datums:'12.11.2025', veids:'Par medicīniskajām indikācijām vieglā automobiļa speciālai pielāgošanai un pabalsta saņemšanai transporta izdevumu kompensēšanai', lemums:'Noteikt',   datNo:'02.10.2025', datLidz:'11.05.2026', spekaLidz:'11.05.2026' },
+      { nr:'21-2023-2665-A-1', datums:'22.08.2023', veids:'Par medicīniskajām indikācijām vieglā automobiļa speciālai pielāgošanai un pabalsta saņemšanai transporta izdevumu kompensēšanai', lemums:'Noteikt',   datNo:'05.07.2023', datLidz:'04.07.2025', spekaLidz:'04.07.2025' },
+      { nr:'21-2023-2665-A-2', datums:'22.08.2023', veids:'Par īpašas kopšanas nepieciešamību',                                                                                               lemums:'Noteikt',   datNo:'05.07.2023', datLidz:'04.07.2025', spekaLidz:'04.07.2025' },
+      { nr:'35-2020-313-A',    datums:'17.03.2020', veids:'Par medicīniskajām indikācijām vieglā automobiļa speciālai pielāgošanai un pabalsta saņemšanai transporta izdevumu kompensēšanai', lemums:'Nenoteikt', datNo:'10.02.2020', datLidz:null,         spekaLidz:null },
+    ],
+    apliecibas: [
+      { nr:'143630', lemumaNr:'2026/21631',  grupa:'OTRĀ (2) GRUPA',  izsniegta:'14.05.2026', datNo:'12.05.2026', datLidz:'Uz mūžu',    statuss:'Spēkā/Izdrukāta' },
+      { nr:'143624', lemumaNr:'35-2020-391', grupa:'TREŠĀ (3) GRUPA', izsniegta:'12.05.2026', datNo:'06.01.2020', datLidz:'Uz mūžu',    statuss:'Spēkā/Izdrukāta' },
+      { nr:'114954', lemumaNr:'2025/63482',  grupa:'PIRMĀ (1) GRUPA', izsniegta:'13.11.2025', datNo:'02.10.2025', datLidz:'01.10.2030', statuss:'Spēkā/Izdrukāta' },
+    ],
+    iesniegumi: [
+      { nr:'2026/23880', regDat:'12.05.2026', veids:'Invaliditātes vai darbspēju ekspertīze',         statuss:'Iesniegums izskatīts/Lēmums pieņemts', apstrideTips:null, apstrideNr:null, atbildeTips:'lemums', atbildeNr:'2026/21631' },
+      { nr:'2026/23877', regDat:'12.05.2026', veids:'Atkārtota invaliditātes apliecības izsniegšana', statuss:'Iesniegums izskatīts/Lēmums pieņemts', apstrideTips:null, apstrideNr:null, atbildeTips:'lemums', atbildeNr:'2026/21631' },
+      { nr:'2025/62584', regDat:'02.10.2025', veids:'Invaliditātes vai darbspēju ekspertīze',         statuss:'Iesniegums izskatīts/Lēmums pieņemts', apstrideTips:null, apstrideNr:null, atbildeTips:'lemums', atbildeNr:'2025/63482' },
+    ]
   }
 };
-
 const DARBSP_CELONI = ['Arodslimība','Nelaimes gadījums darbā',
   'Slimība, kas saistīta ar atrašanos Černobiļas atomelektrostacijas avārijas zonā',
   'Slimība, kas saistīta ar Černobiļas atomelektrostacijas avārijas seku likvidēšanu',
@@ -436,7 +519,6 @@ function renderLemumi(data) {
   const aktivi=data.lemumi.filter(isLemumsActive);
   const neaktivi=data.lemumi.filter(l=>!isLemumsActive(l));
   let html='';
-  const nextTab=`<div class="next-tab-wrap"><button class="btn-next-tab" onclick="switchTabNext()">Tālāk</button></div>`;
 
   html+=grpRow('Spēkā esošie lēmumi','Lēmumi, kuriem sistēmas datums iekrīt derīguma periodā (Invaliditāte=Ir) vai pieņemti pēdējā mēnesī (Invaliditāte=Nav).');
   if(!aktivi.length) { html+=`<div class="empty-state">Jums nav spēkā esošu lēmumu.</div>`; }
@@ -459,8 +541,8 @@ function renderLemumi(data) {
       ];
       html+=expItem(i+1+'.',`Lēmums Nr. ${l.nr}`,rows2html(rws),true);
     });
-    html+=nextTab;
   }
+  html+=`<div class="tab-nav-btns"><button class="btn-tab-nav" onclick="switchTabById('iesniegumi')">Iesniegumi</button><button class="btn-tab-nav current">Lēmumi</button><button class="btn-tab-nav" onclick="switchTabById('atzinumi')">Atzinumi</button><button class="btn-tab-nav" onclick="switchTabById('apliecibas')">Apliecības</button></div>`;
   if(neaktivi.length) {
     html+=grpRow('Neaktīvi','Lēmumi, kuru derīguma periods ir beidzies.');
     neaktivi.forEach((l,i)=>{
@@ -490,7 +572,6 @@ function renderAtzinumi(data) {
   const aktivi=data.atzinumi.filter(isAtzinumsActive);
   const neaktivi=data.atzinumi.filter(a=>!isAtzinumsActive(a));
   let html='';
-  const nextTab=`<div class="next-tab-wrap"><button class="btn-next-tab" onclick="switchTabNext()">Tālāk</button></div>`;
 
   html+=grpRow('Spēkā esošie atzinumi','Atzinumi, kuriem sistēmas datums iekrīt darbības periodā un lēmums ir "Noteikt".');
   if(!aktivi.length) { html+=`<div class="empty-state">Jums nav spēkā esošu atzinumu.</div>`; }
@@ -503,8 +584,8 @@ function renderAtzinumi(data) {
            ...(a.datNo?[{sub:'Atzinuma darbības periods'},{l:'Datums no',v:a.datNo},{l:'Datums līdz',v:a.datLidz},{l:'Spēkā līdz:',v:a.spekaLidz}]:[])];
       html+=expItem(i+1+'.',`Atzinums Nr. ${a.nr}`,rows2html(rws),true);
     });
-    html+=nextTab;
   }
+  html+=`<div class="tab-nav-btns"><button class="btn-tab-nav" onclick="switchTabById('iesniegumi')">Iesniegumi</button><button class="btn-tab-nav" onclick="switchTabById('lemumi')">Lēmumi</button><button class="btn-tab-nav current">Atzinumi</button><button class="btn-tab-nav" onclick="switchTabById('apliecibas')">Apliecības</button></div>`;
   if(neaktivi.length) {
     html+=grpRow('Neaktīvi','Atzinumi, kuru darbības periods ir beidzies vai lēmums ir "Nenoteikt".');
     neaktivi.forEach((a,i)=>{
@@ -523,7 +604,6 @@ function renderApliecibas(data) {
   const aktivi=data.apliecibas.filter(isApliecibaActive);
   const neaktivi=data.apliecibas.filter(ap=>!isApliecibaActive(ap));
   let html='';
-  const nextTab=`<div class="next-tab-wrap"><button class="btn-next-tab" onclick="switchTabNext()">Tālāk</button></div>`;
 
   html+=grpRow('Spēkā esošās apliecības','Apliecības, kurām sistēmas datums iekrīt derīguma periodā.');
   if(!aktivi.length) { html+=`<div class="empty-state">Jums nav spēkā esošu apliecību.</div>`; }
@@ -544,8 +624,8 @@ function renderApliecibas(data) {
         : `<div class="item-actions"><button class="btn-action" onclick="openAcc3('${ap.nr}')">Pieprasīt atkārtotai izsniegšanai</button></div>`;
       html+=expItem(i+1+'.',`Apliecība Nr.: ${ap.nr}`,rows2html(rws)+actions,true);
     });
-    html+=nextTab;
   }
+  html+=`<div class="tab-nav-btns"><button class="btn-tab-nav" onclick="switchTabById('iesniegumi')">Iesniegumi</button><button class="btn-tab-nav" onclick="switchTabById('lemumi')">Lēmumi</button><button class="btn-tab-nav" onclick="switchTabById('atzinumi')">Atzinumi</button><button class="btn-tab-nav current">Apliecības</button></div>`;
   if(neaktivi.length) {
     html+=grpRow('Neaktīvi','Apliecības, kuru derīguma periods ir beidzies.');
     neaktivi.forEach((ap,i)=>{
@@ -567,8 +647,8 @@ function renderApliecibas(data) {
 function renderIesniegumi(data) {
   const sorted=[...data.iesniegumi].sort((a,b)=>d(b.regDat)-d(a.regDat));
   const aktivi=sorted.filter(i=>isIesniegumsakts(i,data));
+  const neaktivi=sorted.filter(i=>!isIesniegumsakts(i,data));
   let html='';
-  const nextTab=`<div class="next-tab-wrap"><button class="btn-next-tab" onclick="switchTabNext()">Tālāk</button></div>`;
 
   html+=grpRow('Aktīvi','Iesniegumi, uz kuriem ir aktīva atbilde (spēkā esošs lēmums vai atzinums).');
   if(!aktivi.length) { html+=`<div class="empty-state">Jums nav aktīvu iesniegumu.</div>`; }
@@ -581,7 +661,19 @@ function renderIesniegumi(data) {
       ];
       html+=expItem(i+1+'.',`Iesniegums Nr. ${ies.nr}`,rows2html(rws),true);
     });
-    html+=nextTab;
+  }
+
+  html+=`<div class="tab-nav-btns"><button class="btn-tab-nav current">Iesniegumi</button><button class="btn-tab-nav" onclick="switchTabById('lemumi')">Lēmumi</button><button class="btn-tab-nav" onclick="switchTabById('atzinumi')">Atzinumi</button><button class="btn-tab-nav" onclick="switchTabById('apliecibas')">Apliecības</button></div>`;
+  if(neaktivi.length) {
+    html+=grpRow('Neaktīvi','Iesniegumi bez aktīvas atbildes.');
+    neaktivi.forEach((ies,i)=>{
+      const rws=[
+        {l:'Reģistrācijas datums VDEĀVK:',v:ies.regDat},
+        {l:'Iesnieguma veids:',v:ies.veids,bold:true},
+        {l:'Statuss',v:ies.statuss,bold:true},
+      ];
+      html+=expItem(i+1+'.',`Iesniegums Nr. ${ies.nr}`,rows2html(rws),false);
+    });
   }
   return html;
 }
@@ -614,6 +706,14 @@ function goTo(id) {
 }
 function toggleAcc(id){const item=document.getElementById(id);const isOpen=item.classList.contains('open');document.querySelectorAll('.acc-item').forEach(i=>i.classList.remove('open'));if(!isOpen)item.classList.add('open');}
 function switchTab(id,el){document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.getElementById('panel-'+id).classList.add('active');el.classList.add('active');}
+function switchTabById(id){
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('panel-'+id).classList.add('active');
+  const tabBtn = Array.from(document.querySelectorAll('.tab')).find(t=>t.getAttribute('onclick')&&t.getAttribute('onclick').includes("'"+id+"'"));
+  if(tabBtn) tabBtn.classList.add('active');
+  window.scrollTo(0, document.getElementById('data-content').offsetTop - 20);
+}
 function switchTabNext(){const tabs=Array.from(document.querySelectorAll('#data-content .tab'));const active=tabs.findIndex(t=>t.classList.contains('active'));const next=tabs[active+1];if(next)next.click();window.scrollTo(0,document.getElementById('data-content').offsetTop-20);}
 function openAcc2(nr,tips){goTo('screen1');setTimeout(()=>{toggleAcc('acc2');},100);}
 function openAcc3(nr){goTo('screen1');setTimeout(()=>{toggleAcc('acc3');},100);}
