@@ -550,8 +550,15 @@ function lemRows(l) {
 }
 function lemSummary(l) {
   const ir = l.invalidNoteikta==='Ir';
-  const periods = ir ? `${l.datNo} – ${l.spekaLidz||'—'}` : '';
-  return `<div class="exp-summary"><span>Invaliditāte noteikta: <b>${l.invalidNoteikta}</b></span>${periods?`<span>${periods}</span>`:''}</div>`;
+  let teksts;
+  if(!ir) {
+    teksts = 'Invaliditāte nav noteikta.';
+  } else if(l.spekaLidz==='Uz mūžu') {
+    teksts = `Invaliditāte ir noteikta no ${l.datNo} uz mūžu.`;
+  } else {
+    teksts = `Invaliditāte ir noteikta no ${l.datNo} līdz ${l.spekaLidz}.`;
+  }
+  return `<div class="exp-summary"><span>${teksts}</span></div>`;
 }
 function renderLemumi(data) {
   const aktivi=data.lemumi.filter(isLemumsActive);
@@ -601,10 +608,18 @@ function atzRows(a) {
   ];
 }
 function atzSummary(a) {
-  const lemTxt = a.lemums==='Noteikt' ? 'Indikācijas noteiktas' : 'Indikācijas nav noteiktas';
   const poz = a.lemums==='Noteikt';
-  const periods = (poz && a.datNo) ? `${a.datNo} – ${a.spekaLidz||'—'}` : '';
-  return `<div class="exp-summary"><span><b>${lemTxt}</b></span>${periods?`<span>${periods}</span>`:''}</div>`;
+  let teksts;
+  if(!poz) {
+    teksts = 'Indikācijas nav noteiktas.';
+  } else if(a.spekaLidz==='Uz mūžu') {
+    teksts = `Indikācijas ir noteiktas no ${a.datNo} uz mūžu.`;
+  } else if(a.datNo) {
+    teksts = `Indikācijas ir noteiktas no ${a.datNo} līdz ${a.spekaLidz||'—'}.`;
+  } else {
+    teksts = 'Indikācijas ir noteiktas.';
+  }
+  return `<div class="exp-summary"><span>${teksts}</span></div>`;
 }
 function renderAtzinumi(data) {
   const aktivi=data.atzinumi.filter(isAtzinumsActive);
@@ -643,7 +658,7 @@ function renderApliecibas(data) {
         {l:'Statuss',v:ap.statuss,bold:true},
       ];
       const actions = jauIesniegts
-        ? `<div class="item-actions"><button class="btn-action disabled" disabled>Pieprasīt atkārtotai izsniegšanai</button><div class="action-note">Iesniegums jau ir iesniegts</div></div>`
+        ? `<div class="item-actions"><div class="action-note">Iesniegums atkārtotai izsniegšanai jau ir iesniegts</div></div>`
         : `<div class="item-actions"><button class="btn-action" onclick="openAcc3('${ap.nr}')">Pieprasīt atkārtotai izsniegšanai</button></div>`;
       html+=expItem(i+1+'.',`Apliecība Nr.: ${ap.nr}`,rows2html(rws)+actions,true);
     });
