@@ -551,7 +551,7 @@ function lemRows(l) {
 function lemSummary(l) {
   const ir = l.invalidNoteikta==='Ir';
   const periods = ir ? `${l.datNo} – ${l.spekaLidz||'—'}` : '';
-  return `<div class="exp-summary"><span>Invaliditāte noteikta: <b>${l.invalidNoteikta}</b></span>${periods?`<span>${periods}</span>`:''}<span>Nr. ${l.nr}</span></div>`;
+  return `<div class="exp-summary"><span>Invaliditāte noteikta: <b>${l.invalidNoteikta}</b></span>${periods?`<span>${periods}</span>`:''}</div>`;
 }
 function renderLemumi(data) {
   const aktivi=data.lemumi.filter(isLemumsActive);
@@ -604,7 +604,7 @@ function atzSummary(a) {
   const lemTxt = a.lemums==='Noteikt' ? 'Indikācijas noteiktas' : 'Indikācijas nav noteiktas';
   const poz = a.lemums==='Noteikt';
   const periods = (poz && a.datNo) ? `${a.datNo} – ${a.spekaLidz||'—'}` : '';
-  return `<div class="exp-summary"><span><b>${lemTxt}</b></span>${periods?`<span>${periods}</span>`:''}<span>Nr. ${a.nr}</span></div>`;
+  return `<div class="exp-summary"><span><b>${lemTxt}</b></span>${periods?`<span>${periods}</span>`:''}</div>`;
 }
 function renderAtzinumi(data) {
   const aktivi=data.atzinumi.filter(isAtzinumsActive);
