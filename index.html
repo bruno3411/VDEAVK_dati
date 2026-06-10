@@ -101,7 +101,11 @@ body { font-family: 'Segoe UI', Arial, sans-serif; font-size: 14px; color: #222;
 .exp-num.active-num { border-color: #bbb; color: #777; background: #fff; }
 .exp-item.open .exp-num,
 .exp-item.open .exp-num.active-num { background: #8b1a2e; border-color: #8b1a2e; color: #fff; }
-.exp-title { flex: 1; font-size: 14px; color: #333; font-weight: 400; }
+.exp-title-wrap { flex: 1; display: flex; flex-direction: column; gap: 2px; }
+.exp-title { font-size: 14px; color: #333; font-weight: 400; }
+.exp-summary { display: flex; gap: 18px; flex-wrap: wrap; font-size: 12px; color: #777; }
+.exp-summary b { color: #555; font-weight: 600; }
+.exp-item.open .exp-summary { display: flex; }
 .exp-item.open .exp-title { color: #8b1a2e; font-weight: 500; }
 .exp-chevron { color: #bbb; font-size: 12px; transition: transform 0.25s; }
 .exp-item.open .exp-chevron { transform: rotate(180deg); color: #8b1a2e; }
@@ -508,6 +512,12 @@ function expItem(num, title, body, isActive) {
     <div class="exp-title">${title}</div><span class="exp-chevron">&#8964;</span>
   </div><div class="exp-body">${body}</div></div>`;
 }
+function expItemSum(num, title, summary, body, isActive) {
+  return `<div class="exp-item"><div class="exp-header" onclick="this.parentElement.classList.toggle('open')">
+    <div class="exp-num${isActive?' active-num':''}">${num}</div>
+    <div class="exp-title-wrap"><div class="exp-title">${title}</div>${summary}</div><span class="exp-chevron">&#8964;</span>
+  </div><div class="exp-body">${body}</div></div>`;
+}
 function rows2html(rows) {
   return `<div class="data-box">${rows.map(r=>{
     if(r.sub) return `<div class="data-row subhead"><div class="data-label">${r.sub}</div><div class="data-value light"></div></div>`;
@@ -515,6 +525,34 @@ function rows2html(rows) {
   }).join('')}</div>`;
 }
 
+function lemRows(l) {
+  const ir = l.invalidNoteikta==='Ir';
+  const showDarbsp = DARBSP_CELONI.includes(l.celonis);
+  const dnl26 = isDNL26(l.datNo,l.datLidz);
+  const showFTV = ir && l.funkTrVeids && l.funkTrVeids.toLowerCase().includes('redzes');
+  if(!ir) {
+    // Negatīvs lēmums — tikai "Invaliditāte noteikta: Nav" + Datne
+    return [
+      {l:'Invaliditāte noteikta:',v:l.invalidNoteikta},
+      {l:'Datne',v:`<div class="dl-link"><div class="dl-icon-box">&#11015;</div>Lejupielādēt lēmuma datni</div>`,bold:true},
+    ];
+  }
+  return [
+    {l:'Invaliditāte noteikta:',v:l.invalidNoteikta},
+    {l:'Invaliditātes grupa:',v:l.grupa,bold:true},
+    {l:'Invaliditātes vai darbspēju zaudējuma cēlonis:',v:l.celonis,bold:true},
+    ...(showFTV?[{l:'Funkcionālo traucējumu veids:',v:l.funkTrVeids,bold:true}]:[]),
+    ...(showDarbsp?[{l:'Darbspējas zaudējums:',v:l.darbspZaud}]:[]),
+    ...(!dnl26?[{sub:'Invaliditātes periods:'},{l:'Datums no',v:l.datNo}]:[]),
+    {l:'Spēkā līdz:',v:l.spekaLidz},
+    {l:'Datne',v:`<div class="dl-link"><div class="dl-icon-box">&#11015;</div>Lejupielādēt lēmuma datni</div>`,bold:true},
+  ];
+}
+function lemSummary(l) {
+  const ir = l.invalidNoteikta==='Ir';
+  const periods = ir ? `${l.datNo} – ${l.spekaLidz||'—'}` : '';
+  return `<div class="exp-summary"><span>Invaliditāte noteikta: <b>${l.invalidNoteikta}</b></span>${periods?`<span>${periods}</span>`:''}<span>Nr. ${l.nr}</span></div>`;
+}
 function renderLemumi(data) {
   const aktivi=data.lemumi.filter(isLemumsActive);
   const neaktivi=data.lemumi.filter(l=>!isLemumsActive(l));
@@ -524,51 +562,51 @@ function renderLemumi(data) {
   if(!aktivi.length) { html+=`<div class="empty-state">Jums nav spēkā esošu lēmumu.</div>`; }
   else {
     aktivi.forEach((l,i)=>{
-      const ir = l.invalidNoteikta==='Ir';
-      const showDarbsp = DARBSP_CELONI.includes(l.celonis);
-      const dnl26 = isDNL26(l.datNo,l.datLidz);
-      const showFTV = ir && l.funkTrVeids && l.funkTrVeids.toLowerCase().includes('redzes');
-      const rws=[
-        {l:'Datums',v:l.datums},
-        ...(showDarbsp && ir?[{l:'Darbspējas zaudējums:',v:l.darbspZaud}]:[]),
-        {l:'Invaliditāte noteikta:',v:l.invalidNoteikta},
-        ...(ir?[{l:'Invaliditātes grupa:',v:l.grupa,bold:true}]:[]),
-        ...(ir?[{l:'Invaliditātes vai darbspēju zaudējuma cēlonis:',v:l.celonis,bold:true}]:[]),
-        ...(showFTV?[{l:'Funkcionālo traucējumu veids:',v:l.funkTrVeids,bold:true}]:[]),
-        ...(!dnl26 && ir?[{sub:'Invaliditātes vai darbspēju zaudējuma periods:'},{l:'Datums no',v:l.datNo},{l:'Datums līdz',v:l.datLidz}]:[]),
-        ...(ir?[{l:'Spēkā līdz:',v:l.spekaLidz}]:[]),
-        {l:'Datne',v:`<div class="dl-link"><div class="dl-icon-box">&#11015;</div>Lejupielādēt lēmuma datni</div>`,bold:true},
-      ];
-      html+=expItem(i+1+'.',`Lēmums Nr. ${l.nr}`,rows2html(rws),true);
+      html+=expItemSum(i+1+'.',`Lēmums Nr. ${l.nr}`,lemSummary(l),rows2html(lemRows(l)),true);
     });
   }
   html+=`<div class="tab-nav-btns"><button class="btn-tab-nav" onclick="switchTabById('iesniegumi')">Iesniegumi</button><button class="btn-tab-nav current">Lēmumi</button><button class="btn-tab-nav" onclick="switchTabById('atzinumi')">Atzinumi</button><button class="btn-tab-nav" onclick="switchTabById('apliecibas')">Apliecības</button></div>`;
   if(neaktivi.length) {
     html+=grpRow('Neaktīvi','Lēmumi, kuru derīguma periods ir beidzies.');
     neaktivi.forEach((l,i)=>{
-      const ir = l.invalidNoteikta==='Ir';
-      const showDarbsp = DARBSP_CELONI.includes(l.celonis);
-      const dnl26 = isDNL26(l.datNo,l.datLidz);
-      const showFTV = ir && l.funkTrVeids && l.funkTrVeids.toLowerCase().includes('redzes');
-      const rws=[
-        {l:'Datums',v:l.datums},
-        ...(showDarbsp && ir?[{l:'Darbspējas zaudējums:',v:l.darbspZaud}]:[]),
-        {l:'Invaliditāte noteikta:',v:l.invalidNoteikta},
-        ...(ir?[{l:'Invaliditātes grupa:',v:l.grupa,bold:true}]:[]),
-        ...(ir?[{l:'Invaliditātes vai darbspēju zaudējuma cēlonis:',v:l.celonis,bold:true}]:[]),
-        ...(showFTV?[{l:'Funkcionālo traucējumu veids:',v:l.funkTrVeids,bold:true}]:[]),
-        ...(!dnl26 && ir?[{sub:'Invaliditātes vai darbspēju zaudējuma periods:'},{l:'Datums no',v:l.datNo},{l:'Datums līdz',v:l.datLidz}]:[]),
-        ...(ir?[{l:'Spēkā līdz:',v:l.spekaLidz}]:[]),
-        {l:'Datne',v:`<div class="dl-link"><div class="dl-icon-box">&#11015;</div>Lejupielādēt lēmuma datni</div>`,bold:true},
-      ];
-      html+=expItem(i+1+'.',`Lēmums Nr. ${l.nr}`,rows2html(rws),false);
+      html+=expItemSum(i+1+'.',`Lēmums Nr. ${l.nr}`,lemSummary(l),rows2html(lemRows(l)),false);
     });
   }
   return html;
 }
 
-function renderAtzinumi(data) {
+function atzLemumsText(a) {
+  return a.lemums==='Noteikt' ? 'Noteikt indikācijas' : 'Nenoteikt indikācijas';
+}
+function atzRows(a) {
   const DNL26_VEIDS='Pārejoša darbnespēja pēc 26. nedēļas';
+  const isDNL26v = a.veids===DNL26_VEIDS;
+  const poz = a.lemums==='Noteikt';
+  const lemTxt = atzLemumsText(a);
+  if(!poz) {
+    // Negatīvs atzinums — Atzinuma lēmums + Datne
+    return [
+      {l:'Atzinuma lēmums:',v:lemTxt,bold:true},
+      {l:'Datne',v:`<div class="dl-link"><div class="dl-icon-box">&#11015;</div>Lejupielādēt lēmuma datni</div>`,bold:true},
+    ];
+  }
+  if(isDNL26v) {
+    return [{l:'Atzinuma pieņemšanas datums:',v:a.datums},{l:'Veids:',v:a.veids,bold:true},{l:'Atzinuma lēmums:',v:lemTxt,bold:true}];
+  }
+  return [
+    {l:'Atzinuma lēmums:',v:lemTxt,bold:true},
+    {l:'Veids:',v:a.veids,bold:true},
+    ...(a.datNo?[{sub:'Atzinuma darbības periods:'},{l:'Datums no',v:a.datNo}]:[]),
+    {l:'Spēkā līdz:',v:a.spekaLidz||'—'},
+  ];
+}
+function atzSummary(a) {
+  const lemTxt = a.lemums==='Noteikt' ? 'Indikācijas noteiktas' : 'Indikācijas nav noteiktas';
+  const poz = a.lemums==='Noteikt';
+  const periods = (poz && a.datNo) ? `${a.datNo} – ${a.spekaLidz||'—'}` : '';
+  return `<div class="exp-summary"><span><b>${lemTxt}</b></span>${periods?`<span>${periods}</span>`:''}<span>Nr. ${a.nr}</span></div>`;
+}
+function renderAtzinumi(data) {
   const aktivi=data.atzinumi.filter(isAtzinumsActive);
   const neaktivi=data.atzinumi.filter(a=>!isAtzinumsActive(a));
   let html='';
@@ -577,24 +615,14 @@ function renderAtzinumi(data) {
   if(!aktivi.length) { html+=`<div class="empty-state">Jums nav spēkā esošu atzinumu.</div>`; }
   else {
     aktivi.forEach((a,i)=>{
-      const isDNL26v = a.veids===DNL26_VEIDS;
-      const rws = isDNL26v
-        ? [{l:'Atzinuma pieņemšanas datums:',v:a.datums},{l:'Veids:',v:a.veids,bold:true},{l:'Atzinuma lēmums:',v:a.lemums,bold:true}]
-        : [{l:'Datums:',v:a.datums},{l:'Veids:',v:a.veids,bold:true},{l:'Atzinuma lēmums:',v:a.lemums,bold:true},
-           ...(a.datNo?[{sub:'Atzinuma darbības periods'},{l:'Datums no',v:a.datNo},{l:'Datums līdz',v:a.datLidz},{l:'Spēkā līdz:',v:a.spekaLidz}]:[])];
-      html+=expItem(i+1+'.',`Atzinums Nr. ${a.nr}`,rows2html(rws),true);
+      html+=expItemSum(i+1+'.',`Atzinums Nr. ${a.nr}`,atzSummary(a),rows2html(atzRows(a)),true);
     });
   }
   html+=`<div class="tab-nav-btns"><button class="btn-tab-nav" onclick="switchTabById('iesniegumi')">Iesniegumi</button><button class="btn-tab-nav" onclick="switchTabById('lemumi')">Lēmumi</button><button class="btn-tab-nav current">Atzinumi</button><button class="btn-tab-nav" onclick="switchTabById('apliecibas')">Apliecības</button></div>`;
   if(neaktivi.length) {
     html+=grpRow('Neaktīvi','Atzinumi, kuru darbības periods ir beidzies vai lēmums ir "Nenoteikt".');
     neaktivi.forEach((a,i)=>{
-      const isDNL26v = a.veids===DNL26_VEIDS;
-      const rws = isDNL26v
-        ? [{l:'Atzinuma pieņemšanas datums:',v:a.datums},{l:'Veids:',v:a.veids,bold:true},{l:'Atzinuma lēmums:',v:a.lemums,bold:true}]
-        : [{l:'Datums:',v:a.datums},{l:'Veids:',v:a.veids,bold:true},{l:'Atzinuma lēmums:',v:a.lemums,bold:true},
-           ...(a.datNo?[{sub:'Atzinuma darbības periods'},{l:'Datums no',v:a.datNo},{l:'Datums līdz',v:a.datLidz},{l:'Spēkā līdz:',v:a.spekaLidz}]:[])];
-      html+=expItem(i+1+'.',`Atzinums Nr. ${a.nr}`,rows2html(rws),false);
+      html+=expItemSum(i+1+'.',`Atzinums Nr. ${a.nr}`,atzSummary(a),rows2html(atzRows(a)),false);
     });
   }
   return html;
@@ -611,12 +639,7 @@ function renderApliecibas(data) {
     aktivi.forEach((ap,i)=>{
       const jauIesniegts=hasApstrideIesniegums(data,'aplieciba',ap.nr);
       const rws=[
-        {l:'Saistītā invaliditātes lēmuma Nr.:',v:ap.lemumaNr},
-        {l:'Invaliditātes grupa:',v:ap.grupa,bold:true},
         {l:'Apliecība izsniegta:',v:ap.izsniegta},
-        {sub:'Termiņš (Invaliditātes periods)'},
-        {l:'Datums no',v:ap.datNo},
-        {l:'Datums līdz',v:ap.datLidz},
         {l:'Statuss',v:ap.statuss,bold:true},
       ];
       const actions = jauIesniegts
@@ -630,12 +653,7 @@ function renderApliecibas(data) {
     html+=grpRow('Neaktīvi','Apliecības, kuru derīguma periods ir beidzies.');
     neaktivi.forEach((ap,i)=>{
       const rws=[
-        {l:'Saistītā invaliditātes lēmuma Nr.:',v:ap.lemumaNr},
-        {l:'Invaliditātes grupa:',v:ap.grupa,bold:true},
         {l:'Apliecība izsniegta:',v:ap.izsniegta},
-        {sub:'Termiņš (Invaliditātes periods)'},
-        {l:'Datums no',v:ap.datNo},
-        {l:'Datums līdz',v:ap.datLidz},
         {l:'Statuss',v:ap.statuss,bold:true},
       ];
       html+=expItem(i+1+'.',`Apliecība Nr.: ${ap.nr}`,rows2html(rws),false);
