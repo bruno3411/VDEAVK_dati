@@ -286,14 +286,22 @@ body { font-family: 'Segoe UI', Arial, sans-serif; font-size: 14px; color: #222;
         </ul>
         <div class="fp-group">Iesniegumi</div>
         <ul class="fp-list">
-          <li><span class="fp-ok">✓</span> Aktīvi — ja ir aktīva atbilde (spēkā esošs lēmums/atzinums). Tukšs → "Jums nav aktīvu iesniegumu"</li>
-          <li><span class="fp-ok">✓</span> Neaktīvo bloks noņemts — rādā tikai aktīvos</li>
-          <li><span class="fp-ok">✓</span> Sakārtoti pēc datuma — jaunākie pirmie</li>
-          <li><span class="fp-ok">✓</span> Poga TĀLĀK zem aktīvajiem → pāriet uz nākamo cilni</li>
-          <li><span class="fp-ok">✓</span> (?) pie Aktīvi ar paskaidrojumu</li>
+          <li><span class="fp-ok">✓</span> Sadalīti 2 sadaļās pēc statusa: <strong>Izskatīšanā</strong> un <strong>Izskatītie</strong> (statusi tiks precizēti PPS)</li>
+          <li><span class="fp-warn">⚠</span> VDEĀVK kolēģi precizēs, cik "vecus" iesniegumus attēlojam (pēc reģistrācijas datuma)</li>
+          <li><span class="fp-ok">✓</span> "Izskatīšanā" — tukšs → "Jums nav iesniegumu izskatīšanā"</li>
+          <li><span class="fp-ok">✓</span> "Izskatītie" — pārējie, ja tukšs, bloku neattēlo</li>
+          <li><span class="fp-ok">✓</span> Sakārtoti pēc reģistrācijas datuma — jaunākie pirmie</li>
+          <li><span class="fp-ok">✓</span> Navigācijas pogas (Iesniegumi/Lēmumi/Atzinumi/Apliecības) starp sadaļām</li>
         </ul>
         <div class="fp-group">Lēmumi</div>
         <ul class="fp-list">
+          <li><span class="fp-ok">✓</span> "Spēkā līdz": agrākais no spēkā_līdz / invaliditāte_noteikta_līdz (null = bezgalīgi liels datums)</li>
+          <li><span class="fp-ok">✓</span> Ja invaliditāte_noteikta = false → "Invaliditāte nav noteikta."</li>
+          <li><span class="fp-ok">✓</span> Ja invaliditāte_noteikta = true UN abi datumi (spēkā_līdz, invaliditāte_noteikta_līdz) = null → "Uz mūžu"</li>
+        </ul>
+        <div class="fp-group">Lēmumi (cont.)</div>
+        <ul class="fp-list">
+          <li><span class="fp-ok">✓</span> Ja Atzinuma veids = "Pārejoša darbnespēja pēc 26. nedēļas" → nerāda darbības periodu, tikai pieņemšanas datumu</li>
           <li><span class="fp-ok">✓</span> "Aktīvi" → <strong>SPĒKĀ ESOŠIE LĒMUMI</strong>. Aktīvi: datums intervālā [no–līdz] UN Invaliditāte=Ir (Uz mūžu=2999.12.31); VAI Datums &lt; šodien+1mēn UN Invaliditāte=Nav. Tukšs → paziņojums. Neaktīvi — pārējie; ja nav → bloku neattēlo</li>
           <li><span class="fp-ok">✓</span> Darbspējas zaudējums: rādās tikai ja cēlonis ir Arodslimība / Nelaimes gadījums darbā / Černobiļas cēloņi (3 varianti)</li>
           <li><span class="fp-ok">✓</span> Funkcionālo traucējumu veids: rādās tikai ja FTV satur "Redzes"</li>
@@ -383,6 +391,24 @@ const DATA = {
     ]
   },
   anna: null,
+  maris: {
+    lemumi: [
+      { nr:'2026/10045', datums:'10.03.2026', darbspZaud:50, invalidNoteikta:'Ir', grupa:'TREŠĀ (3) GRUPA', celonis:'Nelaimes gadījums darbā', funkTrVeids:'Kustību traucējumi', datNo:'10.03.2026', datLidz:'09.03.2027', spekaLidz:'09.03.2027' },
+      { nr:'2024/55210', datums:'05.11.2024', darbspZaud:40, invalidNoteikta:'Ir', grupa:'TREŠĀ (3) GRUPA', celonis:'Nelaimes gadījums darbā', funkTrVeids:'Pārējie', datNo:'05.11.2024', datLidz:'04.11.2025', spekaLidz:'04.11.2025' },
+    ],
+    atzinumi: [
+      { nr:'14-2026-0321-A', datums:'15.03.2026', veids:'Par tehnisko palīglīdzekļu nepieciešamību', lemums:'Noteikt', datNo:'15.03.2026', datLidz:'14.03.2028', spekaLidz:'14.03.2028' },
+      { nr:'09-2024-1102-B', datums:'20.11.2024', veids:'Par asistenta pakalpojuma nepieciešamību',  lemums:'Nenoteikt', datNo:null, datLidz:null, spekaLidz:null },
+    ],
+    apliecibas: [
+      { nr:'201543', lemumaNr:'2026/10045', grupa:'TREŠĀ (3) GRUPA', izsniegta:'18.03.2026', datNo:'10.03.2026', datLidz:'09.03.2027', statuss:'Spēkā/Izdrukāta' },
+      { nr:'188320', lemumaNr:'2024/55210', grupa:'TREŠĀ (3) GRUPA', izsniegta:'12.11.2024', datNo:'05.11.2024', datLidz:'04.11.2025', statuss:'Beigusies' },
+    ],
+    iesniegumi: [
+      { nr:'2026/10012', regDat:'08.03.2026', veids:'Invaliditātes vai darbspēju ekspertīze', statuss:'Iesniegums izskatīts/Lēmums pieņemts', apstrideTips:null, apstrideNr:null, atbildeTips:'lemums', atbildeNr:'2026/10045' },
+      { nr:'2024/55001', regDat:'01.11.2024', veids:'Invaliditātes vai darbspēju ekspertīze', statuss:'Iesniegums izskatīts/Lēmums pieņemts', apstrideTips:null, apstrideNr:null, atbildeTips:'lemums', atbildeNr:'2024/55210' },
+    ]
+  },
 
   peteris: {
     lemumi: [
@@ -420,60 +446,7 @@ const DATA = {
   }
 };
 
-const _MARIS_PLACEHOLDER = {
-  maris: {
-    lemumi: [
-      { nr:'2026/10045', datums:'10.03.2026', darbspZaud:50, invalidNoteikta:'Ir', grupa:'TREŠĀ (3) GRUPA', celonis:'Nelaimes gadījums darbā', funkTrVeids:'Kustību traucējumi', datNo:'10.03.2026', datLidz:'09.03.2027', spekaLidz:'09.03.2027' },
-      { nr:'2024/55210', datums:'05.11.2024', darbspZaud:40, invalidNoteikta:'Ir', grupa:'TREŠĀ (3) GRUPA', celonis:'Nelaimes gadījums darbā', funkTrVeids:'Pārējie', datNo:'05.11.2024', datLidz:'04.11.2025', spekaLidz:'04.11.2025' },
-    ],
-    atzinumi: [
-      { nr:'14-2026-0321-A', datums:'15.03.2026', veids:'Par tehnisko palīglīdzekļu nepieciešamību', lemums:'Noteikt', datNo:'15.03.2026', datLidz:'14.03.2028', spekaLidz:'14.03.2028' },
-      { nr:'09-2024-1102-B', datums:'20.11.2024', veids:'Par asistenta pakalpojuma nepieciešamību',  lemums:'Nenoteikt', datNo:null, datLidz:null, spekaLidz:null },
-    ],
-    apliecibas: [
-      { nr:'201543', lemumaNr:'2026/10045', grupa:'TREŠĀ (3) GRUPA', izsniegta:'18.03.2026', datNo:'10.03.2026', datLidz:'09.03.2027', statuss:'Spēkā/Izdrukāta' },
-      { nr:'188320', lemumaNr:'2024/55210', grupa:'TREŠĀ (3) GRUPA', izsniegta:'12.11.2024', datNo:'05.11.2024', datLidz:'04.11.2025', statuss:'Beigusies' },
-    ],
-    iesniegumi: [
-      { nr:'2026/10012', regDat:'08.03.2026', veids:'Invaliditātes vai darbspēju ekspertīze', statuss:'Iesniegums izskatīts/Lēmums pieņemts', apstrideTips:null, apstrideNr:null, atbildeTips:'lemums', atbildeNr:'2026/10045' },
-      { nr:'2024/55001', regDat:'01.11.2024', veids:'Invaliditātes vai darbspēju ekspertīze', statuss:'Iesniegums izskatīts/Lēmums pieņemts', apstrideTips:null, apstrideNr:null, atbildeTips:'lemums', atbildeNr:'2024/55210' },
-    ]
-  },
-  peteris: {
-    lemumi: [
-      { nr:'2026/21631',   datums:'12.05.2026', darbspZaud:null, invalidNoteikta:'Ir',  grupa:'OTRĀ (2) GRUPA',   celonis:'Slimība',    funkTrVeids:'Redzes',         datNo:'12.05.2026', datLidz:'Uz mūžu',    spekaLidz:'Uz mūžu' },
-      { nr:'2025/63482',   datums:'12.11.2025', darbspZaud:null, invalidNoteikta:'Ir',  grupa:'PIRMĀ (1) GRUPA',  celonis:'Slimība',    funkTrVeids:'Kustību, Pārējie', datNo:'02.10.2025', datLidz:'01.10.2030', spekaLidz:'01.10.2030' },
-      { nr:'35-2020-391',  datums:'04.02.2020', darbspZaud:30,   invalidNoteikta:'Ir',  grupa:'TREŠĀ (3) GRUPA',  celonis:'Arodslimība',funkTrVeids:null,              datNo:'06.01.2020', datLidz:'Uz mūžu',    spekaLidz:'Uz mūžu' },
-      { nr:'21-2023-5250', datums:'22.08.2023', darbspZaud:null, invalidNoteikta:'Ir',  grupa:'PIRMĀ (1) GRUPA',  celonis:'Slimība',    funkTrVeids:null,              datNo:'05.07.2023', datLidz:'04.07.2025', spekaLidz:'04.07.2025' },
-      { nr:'35-2020-389',  datums:'04.02.2020', darbspZaud:null, invalidNoteikta:'Ir',  grupa:'OTRĀ (2) GRUPA',   celonis:'Slimība',    funkTrVeids:null,              datNo:'30.01.2020', datLidz:'04.07.2023', spekaLidz:'04.07.2023' },
-      { nr:'35-2018-1153', datums:'14.03.2018', darbspZaud:null, invalidNoteikta:'Ir',  grupa:'OTRĀ (2) GRUPA',   celonis:'Slimība',    funkTrVeids:null,              datNo:'30.01.2018', datLidz:'29.01.2020', spekaLidz:'29.01.2020' },
-      { nr:'35-2015-344',  datums:'02.02.2015', darbspZaud:30,   invalidNoteikta:'Ir',  grupa:'TREŠĀ (3) GRUPA',  celonis:'Arodslimība',funkTrVeids:'Kustību',         datNo:'06.01.2015', datLidz:'05.01.2020', spekaLidz:'05.01.2020' },
-      { nr:'35-2013-58',   datums:'01.02.2013', darbspZaud:30,   invalidNoteikta:'Ir',  grupa:'TREŠĀ (3) GRUPA',  celonis:'Arodslimība',funkTrVeids:null,              datNo:'07.01.2013', datLidz:'06.01.2015', spekaLidz:'06.01.2015' },
-      { nr:'35-2012-103',  datums:'11.01.2012', darbspZaud:30,   invalidNoteikta:'Ir',  grupa:'TREŠĀ (3) GRUPA',  celonis:'Arodslimība',funkTrVeids:'Pārējie',         datNo:'11.01.2012', datLidz:'10.01.2013', spekaLidz:'10.01.2013' },
-      { nr:'1672',         datums:'13.09.2001', darbspZaud:null, invalidNoteikta:'Nav', grupa:null,               celonis:'Nav',        funkTrVeids:null,              datNo:'13.09.2001', datLidz:null,         spekaLidz:null },
-      { nr:'763',          datums:'10.04.2003', darbspZaud:null, invalidNoteikta:'Nav', grupa:null,               celonis:'Nav',        funkTrVeids:null,              datNo:'10.04.2003', datLidz:null,         spekaLidz:null },
-      { nr:'1491',         datums:'28.09.2001', darbspZaud:null, invalidNoteikta:'Nav', grupa:null,               celonis:'Nav',        funkTrVeids:null,              datNo:'28.09.2001', datLidz:null,         spekaLidz:null },
-    ],
-    atzinumi: [
-      { nr:'2026/12401',       datums:'12.05.2026', veids:'Par medicīniskajām indikācijām vieglā automobiļa speciālai pielāgošanai un pabalsta saņemšanai transporta izdevumu kompensēšanai', lemums:'Noteikt',   datNo:'12.05.2026', datLidz:'Uz mūžu',    spekaLidz:null },
-      { nr:'2025/36436',       datums:'12.11.2025', veids:'Par īpašas kopšanas nepieciešamību',                                                                                               lemums:'Noteikt',   datNo:'02.10.2025', datLidz:'01.10.2030', spekaLidz:'01.10.2030' },
-      { nr:'2025/36437',       datums:'12.11.2025', veids:'Par medicīniskajām indikācijām vieglā automobiļa speciālai pielāgošanai un pabalsta saņemšanai transporta izdevumu kompensēšanai', lemums:'Noteikt',   datNo:'02.10.2025', datLidz:'11.05.2026', spekaLidz:'11.05.2026' },
-      { nr:'21-2023-2665-A-1', datums:'22.08.2023', veids:'Par medicīniskajām indikācijām vieglā automobiļa speciālai pielāgošanai un pabalsta saņemšanai transporta izdevumu kompensēšanai', lemums:'Noteikt',   datNo:'05.07.2023', datLidz:'04.07.2025', spekaLidz:'04.07.2025' },
-      { nr:'21-2023-2665-A-2', datums:'22.08.2023', veids:'Par īpašas kopšanas nepieciešamību',                                                                                               lemums:'Noteikt',   datNo:'05.07.2023', datLidz:'04.07.2025', spekaLidz:'04.07.2025' },
-      { nr:'35-2020-313-A',    datums:'17.03.2020', veids:'Par medicīniskajām indikācijām vieglā automobiļa speciālai pielāgošanai un pabalsta saņemšanai transporta izdevumu kompensēšanai', lemums:'Nenoteikt', datNo:'10.02.2020', datLidz:null,         spekaLidz:null },
-    ],
-    apliecibas: [
-      { nr:'143630', lemumaNr:'2026/21631',  grupa:'OTRĀ (2) GRUPA',  izsniegta:'14.05.2026', datNo:'12.05.2026', datLidz:'Uz mūžu',    statuss:'Spēkā/Izdrukāta' },
-      { nr:'143624', lemumaNr:'35-2020-391', grupa:'TREŠĀ (3) GRUPA', izsniegta:'12.05.2026', datNo:'06.01.2020', datLidz:'Uz mūžu',    statuss:'Spēkā/Izdrukāta' },
-      { nr:'114954', lemumaNr:'2025/63482',  grupa:'PIRMĀ (1) GRUPA', izsniegta:'13.11.2025', datNo:'02.10.2025', datLidz:'01.10.2030', statuss:'Spēkā/Izdrukāta' },
-    ],
-    iesniegumi: [
-      { nr:'2026/23880', regDat:'12.05.2026', veids:'Invaliditātes vai darbspēju ekspertīze',         statuss:'Iesniegums izskatīts/Lēmums pieņemts', apstrideTips:null, apstrideNr:null, atbildeTips:'lemums', atbildeNr:'2026/21631' },
-      { nr:'2026/23877', regDat:'12.05.2026', veids:'Atkārtota invaliditātes apliecības izsniegšana', statuss:'Iesniegums izskatīts/Lēmums pieņemts', apstrideTips:null, apstrideNr:null, atbildeTips:'lemums', atbildeNr:'2026/21631' },
-      { nr:'2025/62584', regDat:'02.10.2025', veids:'Invaliditātes vai darbspēju ekspertīze',         statuss:'Iesniegums izskatīts/Lēmums pieņemts', apstrideTips:null, apstrideNr:null, atbildeTips:'lemums', atbildeNr:'2025/63482' },
-    ]
-  }
-};
+
 const DARBSP_CELONI = ['Arodslimība','Nelaimes gadījums darbā',
   'Slimība, kas saistīta ar atrašanos Černobiļas atomelektrostacijas avārijas zonā',
   'Slimība, kas saistīta ar Černobiļas atomelektrostacijas avārijas seku likvidēšanu',
@@ -677,16 +650,20 @@ function renderApliecibas(data) {
   return html;
 }
 
+// Statusi, kas uzskatāmi par "Izskatīšanā" (tiks precizēti PPS)
+const IZSKATISANA_STATUSI = ['Izskatīšanā','Reģistrēts','Saņemts'];
+function isIzskatisana(ies) { return IZSKATISANA_STATUSI.includes(ies.statuss); }
 function renderIesniegumi(data) {
   const sorted=[...data.iesniegumi].sort((a,b)=>d(b.regDat)-d(a.regDat));
-  const aktivi=sorted.filter(i=>isIesniegumsakts(i,data));
-  const neaktivi=sorted.filter(i=>!isIesniegumsakts(i,data));
+  const izskatisana=sorted.filter(isIzskatisana);
+  const izskatitie=sorted.filter(i=>!isIzskatisana(i));
   let html='';
 
-  html+=grpRow('Aktīvi','Iesniegumi, uz kuriem ir aktīva atbilde (spēkā esošs lēmums vai atzinums).');
-  if(!aktivi.length) { html+=`<div class="empty-state">Jums nav aktīvu iesniegumu.</div>`; }
+  // 1.1. Sadaļa "Izskatīšanā"
+  html+=grpRow('Izskatīšanā','Iesniegumi, kuri šobrīd ir izskatīšanas procesā.');
+  if(!izskatisana.length) { html+=`<div class="empty-state">Jums nav iesniegumu izskatīšanā.</div>`; }
   else {
-    aktivi.forEach((ies,i)=>{
+    izskatisana.forEach((ies,i)=>{
       const rws=[
         {l:'Reģistrācijas datums VDEĀVK:',v:ies.regDat},
         {l:'Iesnieguma veids:',v:ies.veids,bold:true},
@@ -697,9 +674,11 @@ function renderIesniegumi(data) {
   }
 
   html+=`<div class="tab-nav-btns"><button class="btn-tab-nav current">Iesniegumi</button><button class="btn-tab-nav" onclick="switchTabById('lemumi')">Lēmumi</button><button class="btn-tab-nav" onclick="switchTabById('atzinumi')">Atzinumi</button><button class="btn-tab-nav" onclick="switchTabById('apliecibas')">Apliecības</button></div>`;
-  if(neaktivi.length) {
-    html+=grpRow('Neaktīvi','Iesniegumi bez aktīvas atbildes.');
-    neaktivi.forEach((ies,i)=>{
+
+  // 1.2. Sadaļa "Izskatītie"
+  if(izskatitie.length) {
+    html+=grpRow('Izskatītie','Iesniegumi, kuru izskatīšana ir pabeigta.');
+    izskatitie.forEach((ies,i)=>{
       const rws=[
         {l:'Reģistrācijas datums VDEĀVK:',v:ies.regDat},
         {l:'Iesnieguma veids:',v:ies.veids,bold:true},
