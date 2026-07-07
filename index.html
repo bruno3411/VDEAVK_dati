@@ -83,13 +83,13 @@ body { font-family: 'Segoe UI', Arial, sans-serif; font-size: 14px; color: #222;
 .tab.active { color: #1a1a1a; font-weight: 600; border-bottom: 3px solid #8b1a2e; }
 .tab-panel { display: none; } .tab-panel.active { display: block; }
 
-.group-row { display: flex; align-items: center; gap: 8px; margin: 20px 0 10px; padding-left: 2px; }
-.group-row:first-child { margin-top: 8px; }
+.group-row-wrap { margin: 20px 0 10px; padding-left: 2px; }
+.group-row-wrap:first-child { margin-top: 8px; }
+.group-row { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
 .group-label { font-size: 12px; font-weight: 700; color: #666; text-transform: uppercase; letter-spacing: 0.6px; }
-.tooltip-wrap { position: relative; display: inline-flex; align-items: center; }
-.tooltip-icon { width: 18px; height: 18px; border-radius: 50%; border: 1.5px solid #999; color: #777; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; cursor: pointer; user-select: none; flex-shrink: 0; }
-.tooltip-wrap:hover .tooltip-box { display: block; }
-.tooltip-box { display: none; position: absolute; left: 24px; top: -4px; background: #333; color: #fff; font-size: 12px; padding: 8px 12px; border-radius: 5px; z-index: 100; width: 270px; line-height: 1.5; }
+.tooltip-wrap { display: flex; align-items: flex-start; gap: 6px; margin-top: 4px; }
+.tooltip-icon { width: 18px; height: 18px; border-radius: 50%; background: #1a1a1a; color: #fff; font-size: 11px; font-weight: 700; font-style: italic; font-family: Georgia, serif; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+.tooltip-box { display: block; position: static; transform: none; background: transparent; color: #444; font-size: 13px; padding: 0; border-radius: 0; z-index: auto; width: auto; line-height: 1.5; font-style: normal; font-family: 'Segoe UI', Arial, sans-serif; }
 
 /* Accordion items — SDK style */
 .exp-item { background: #fff; border: 1px solid #d8d8d8; border-radius: 10px; margin-bottom: 10px; overflow: hidden; }
@@ -476,7 +476,10 @@ function hasApstrideIesniegums(data, tips, nr) {
 }
 
 function grpRow(label, tip) {
-  return `<div class="group-row"><span class="group-label">${label}</span><div class="tooltip-wrap"><div class="tooltip-icon">?</div><div class="tooltip-box">${tip}</div></div></div>`;
+  return `<div class="group-row-wrap">
+    <div class="group-row"><span class="group-label">${label}</span></div>
+    <div class="tooltip-wrap"><div class="tooltip-icon">i</div><div class="tooltip-box">${tip}</div></div>
+  </div>`;
 }
 function expItem(num, title, body, isActive) {
   return `<div class="exp-item"><div class="exp-header" onclick="this.parentElement.classList.toggle('open')">
