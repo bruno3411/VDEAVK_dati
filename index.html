@@ -162,22 +162,27 @@ body { font-family: 'Segoe UI', Arial, sans-serif; font-size: 14px; color: #222;
 
 /* S4 — Pašnovērtējuma anketa */
 .s4-page { max-width: 100%; padding: 0; }
-.pn-block-title { font-size: 15px; font-weight: 700; color: #1a1a1a; margin: 0 0 18px; }
-.pn-field { margin-bottom: 20px; }
-.pn-flabel { font-size: 14px; color: #222; display: flex; align-items: center; gap: 6px; margin-bottom: 8px; }
-.pn-req { color: #c0392b; }
-.pn-help { width: 17px; height: 17px; border: 1.5px solid #888; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 11px; color: #888; flex-shrink: 0; cursor: default; }
-.pn-select, .pn-input { width: 340px; max-width: 100%; padding: 9px 12px; border: 1px solid #ccc; border-radius: 6px; font-size: 14px; color: #888; background: #fff; font-family: inherit; }
-.pn-input { color: #333; }
-.pn-note { font-size: 13.5px; color: #333; line-height: 1.7; margin: 4px 0 10px; }
-.pn-textarea { width: 100%; min-height: 64px; padding: 10px 12px; border: 1px solid #ccc; border-radius: 6px; font-size: 14px; font-family: inherit; resize: vertical; color: #333; margin-bottom: 8px; }
-.pn-section-title { font-size: 14.5px; font-weight: 700; color: #1a1a1a; margin: 26px 0 14px; }
+.pn-block-title { font-size: 15px; font-weight: 700; color: #1a1a1a; margin: 0 0 20px; }
+.pn-field { margin-bottom: 22px; }
+.pn-flabel { font-size: 14px; font-weight: 600; color: #111; display: flex; align-items: center; gap: 4px; margin-bottom: 8px; }
+.pn-req { color: #c0392b; font-weight: 700; }
+.pn-help { display: none; }
+.pn-select, .pn-input { width: 100%; padding: 10px 12px; border: 1px solid #d0d0d0; border-radius: 6px; font-size: 14px; color: #333; background: #fff; font-family: inherit; outline: none; transition: border-color 0.15s; }
+.pn-select:focus, .pn-input:focus { border-color: #1a1a1a; }
+.pn-hint { display: flex; align-items: flex-start; gap: 7px; margin-top: 7px; }
+.pn-hint-icon { width: 18px; height: 18px; border-radius: 50%; background: #1a1a1a; color: #fff; font-size: 11px; font-weight: 700; font-style: italic; font-family: Georgia, serif; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+.pn-hint-text { font-size: 13px; color: #555; line-height: 1.5; }
+.pn-note { font-size: 13.5px; color: #444; line-height: 1.7; margin: 8px 0 12px; }
+.pn-textarea { width: 100%; min-height: 80px; padding: 10px 12px; border: 1px solid #d0d0d0; border-radius: 6px; font-size: 14px; font-family: inherit; resize: vertical; color: #333; outline: none; transition: border-color 0.15s; }
+.pn-textarea:focus { border-color: #1a1a1a; }
+.pn-section-title { font-size: 15px; font-weight: 700; color: #1a1a1a; margin: 28px 0 12px; }
 .pn-section-title.req::after { content: ' *'; color: #c0392b; }
-.pn-qrow { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px; padding: 11px 0; border-bottom: 1px solid #f0f0f0; }
+.pn-qrow { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px; padding: 12px 0; border-bottom: 1px solid #f0f0f0; }
 .pn-qrow:last-of-type { border-bottom: none; }
-.pn-qlabel { flex: 1; min-width: 260px; font-size: 14px; color: #222; display: flex; align-items: center; gap: 6px; }
-.pn-qselect { width: 230px; flex-shrink: 0; }
-.pn-fsp-title { font-size: 15px; font-weight: 700; color: #1a1a1a; margin: 30px 0 4px; display: flex; align-items: center; gap: 6px; }
+.pn-qlabel { flex: 1; min-width: 260px; font-size: 14px; color: #222; display: flex; align-items: center; gap: 6px; line-height: 1.5; }
+.pn-qselect { width: 240px; flex-shrink: 0; padding: 9px 12px; border: 1px solid #d0d0d0; border-radius: 6px; font-size: 14px; color: #333; font-family: inherit; outline: none; }
+.pn-qselect:focus { border-color: #1a1a1a; }
+.pn-fsp-title { font-size: 16px; font-weight: 700; color: #1a1a1a; margin: 32px 0 6px; display: flex; align-items: center; gap: 8px; }
 
 /* LAYOUT */
 .page-bg { background: #e8edf2; min-height: calc(100vh - 100px); padding: 32px 0 60px; }
@@ -372,15 +377,17 @@ body { font-family: 'Segoe UI', Arial, sans-serif; font-size: 14px; color: #222;
     <div class="pn-field">
       <div class="pn-flabel">Izglītība <span class="pn-req">*</span></div>
       <select class="pn-select"><option>Izvēlieties izglītību</option><option>Pamatizglītība</option><option>Vidējā izglītība</option><option>Profesionālā izglītība</option><option>Augstākā izglītība</option></select>
+      <div class="pn-hint"><div class="pn-hint-icon">i</div><div class="pn-hint-text">Norādiet Jūsu augstāko iegūto izglītības līmeni.</div></div>
     </div>
     <div class="pn-field">
-      <div class="pn-flabel">Darba vieta <span class="pn-req">*</span> <span class="pn-help">?</span></div>
+      <div class="pn-flabel">Darba vieta <span class="pn-req">*</span></div>
       <input class="pn-input" type="text">
+      <div class="pn-hint"><div class="pn-hint-icon">i</div><div class="pn-hint-text">Norādiet Jūsu pašreizējo darba vietu (profesiju/nodarbošanos).</div></div>
     </div>
     <div class="pn-note">Ja Jūs augstāk minētajā darbavietā (profesijā/nodarbošanās) esat strādājis mazāk par trijiem gadiem vai neesat strādājis, logā zemāk brīvā teksta formā norādiet, kādus darbus un cik ilgi pēdējo triju gadu laikā Jūs esat strādājis</div>
     <textarea class="pn-textarea"></textarea>
 
-    <div class="pn-fsp-title">Funkcionālo spēju pašnovērtējuma anketa <span class="pn-help">?</span></div>
+    <div class="pn-fsp-title">Funkcionālo spēju pašnovērtējuma anketa</div>
     <div id="pn-sections"></div>
 
     <div class="s2-actions" style="margin-top:20px">
@@ -652,7 +659,7 @@ function renderPnSections(){
   PN_SECTIONS.forEach(sec=>{
     html+=`<div class="pn-section-title${sec.required?' req':''}">${sec.title}</div>`;
     sec.questions.forEach(q=>{
-      html+=`<div class="pn-qrow"><div class="pn-qlabel">${qNum}. ${q} <span class="pn-req">*</span> <span class="pn-help">?</span></div><select class="pn-select pn-qselect"><option>Izvēlieties vērtību...</option><option>1 - Nav grūtību</option><option>2 - Nelielas grūtības</option><option>3 - Vidējas grūtības</option><option>4 - Lielas grūtības</option><option>5 - Nevar veikt</option></select></div>`;
+      html+=`<div class="pn-qrow"><div class="pn-qlabel">${qNum}. ${q} <span class="pn-req">*</span> <span class="pn-help">i</span></div><select class="pn-qselect"><option>Izvēlieties vērtību...</option><option>1 - Nav grūtību</option><option>2 - Nelielas grūtības</option><option>3 - Vidējas grūtības</option><option>4 - Lielas grūtības</option><option>5 - Nevar veikt</option></select></div>`;
       qNum++;
     });
     html+=`<div class="pn-note">Šeit Jūs varat precizēt Jums svarīgu informāciju saistībā ar <b>"${sec.title}"</b> jautājumiem. Lūdzu, norādiet jautājuma numuru un īsumā aprakstiet problēmu.</div><textarea class="pn-textarea"></textarea>`;
