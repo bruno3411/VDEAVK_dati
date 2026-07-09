@@ -167,7 +167,7 @@ body { font-family: 'Segoe UI', Arial, sans-serif; font-size: 14px; color: #222;
 .pn-flabel { font-size: 14px; font-weight: 600; color: #111; display: flex; align-items: center; gap: 4px; margin-bottom: 8px; }
 .pn-req { color: #c0392b; font-weight: 700; }
 .pn-help { display: none; }
-.pn-select, .pn-input { width: 100%; padding: 10px 12px; border: 1px solid #d0d0d0; border-radius: 6px; font-size: 14px; color: #333; background: #fff; font-family: inherit; outline: none; transition: border-color 0.15s; }
+.pn-select, .pn-input { width: 100%; padding: 7px 10px; border: 1px solid #d0d0d0; border-radius: 6px; font-size: 14px; color: #333; background: #fff; font-family: inherit; outline: none; transition: border-color 0.15s; }
 .pn-select:focus, .pn-input:focus { border-color: #1a1a1a; }
 .pn-hint { display: flex; align-items: flex-start; gap: 7px; margin-top: 7px; }
 .pn-hint-icon { width: 18px; height: 18px; border-radius: 50%; background: #1a1a1a; color: #fff; font-size: 11px; font-weight: 700; font-style: italic; font-family: Georgia, serif; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
@@ -177,10 +177,10 @@ body { font-family: 'Segoe UI', Arial, sans-serif; font-size: 14px; color: #222;
 .pn-textarea:focus { border-color: #1a1a1a; }
 .pn-section-title { font-size: 15px; font-weight: 700; color: #1a1a1a; margin: 28px 0 12px; }
 .pn-section-title.req::after { content: ' *'; color: #c0392b; }
-.pn-qrow { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px; padding: 12px 0; border-bottom: 1px solid #f0f0f0; }
+.pn-qrow { display: flex; flex-direction: column; gap: 8px; padding: 16px 0; border-bottom: 1px solid #f0f0f0; }
 .pn-qrow:last-of-type { border-bottom: none; }
-.pn-qlabel { flex: 1; min-width: 260px; font-size: 14px; color: #222; display: flex; align-items: center; gap: 6px; line-height: 1.5; }
-.pn-qselect { width: 240px; flex-shrink: 0; padding: 9px 12px; border: 1px solid #d0d0d0; border-radius: 6px; font-size: 14px; color: #333; font-family: inherit; outline: none; }
+.pn-qlabel { font-size: 14px; font-weight: 600; color: #111; display: flex; align-items: flex-start; gap: 6px; line-height: 1.5; }
+.pn-qselect { width: 100%; padding: 7px 10px; border: 1px solid #d0d0d0; border-radius: 6px; font-size: 14px; color: #333; font-family: inherit; outline: none; transition: border-color 0.15s; }
 .pn-qselect:focus { border-color: #1a1a1a; }
 .pn-fsp-title { font-size: 16px; font-weight: 700; color: #1a1a1a; margin: 32px 0 6px; display: flex; align-items: center; gap: 8px; }
 
@@ -647,19 +647,32 @@ function renderIesniegumi(data) {
 }
 
 const PN_SECTIONS=[
-  {title:'Saprašana un komunikācija',required:false,questions:['Koncentrēšanās kādam darbam uz 10 minūtēm','Atcerēšanās paveikt kaut ko svarīgu','Ikdienas problēmu analīze un to risināšana','Jauna uzdevuma apgūšana, piemēram, nokļūšana iepriekš nezināmā vietā','Citu cilvēku teiktā saprašana','Saskarsme ar nepazīstamiem cilvēkiem','Saprašanās ar sev tuviem cilvēkiem','Sarunāšanās un sarunas uzturēšana']},
-  {title:'Mobilitāte',required:false,questions:['Atrašanās vertikālā stāvoklī (piemēram, stāvēšana, iešana) ilgāku laiku (30 minūtes)','Piecelšanās kājās no sēdus stāvokļa','Pārvietošanās pa mājokli','Iziešana no mājokļa','200 metru attāluma noiešana']},
-  {title:'Pašaprūpe',required:false,questions:['Mazgāšanās','Ģērbšanās','Ēšana','Palikšana uz dažām dienām vienatnē']},
-  {title:'Mājas dzīve un darbs',required:true,questions:['Galveno mājsaimniecības darbu veikšana','Darba pienākumu veikšana (ja Jūs strādājat)']}
+  {title:'Saprašana un komunikācija',required:false,
+   questions:['Koncentrēšanās kādam darbam uz 10 minūtēm','Atcerēšanās paveikt kaut ko svarīgu','Ikdienas problēmu analīze un to risināšana','Jauna uzdevuma apgūšana, piemēram, nokļūšana iepriekš nezināmā vietā','Citu cilvēku teiktā saprašana','Saskarsme ar nepazīstamiem cilvēkiem','Saprašanās ar sev tuviem cilvēkiem','Sarunāšanās un sarunas uzturēšana'],
+   hints:['Piemēram, lasīšana, rakstīšana, aprēķini vai citi uzdevumi, kas prasa uzmanību.','Piemēram, atcerēties lietot medikamentus, apmeklēt ārstu vai veikt maksājumus.','Piemēram, lēmumu pieņemšana ikdienas situācijās.','Jaunas prasmes apgūšana vai orientēšanās nepazīstamā vidē.','Saziņāšanās gan mutiski, gan rakstski, izmantojot zīmju valodu vai žestus.','Piemēram, saziņa ar valsts iestādēm, veikalu darbiniekiem vai jaunu cilvēku iepazīšana.','Piemēram, komunikācija ar ģimenes locekļiem vai draugiem.','Spēja piedalīties sarunā un to uzturēt pietiekami ilgi.']},
+  {title:'Mobilitāte',required:false,
+   questions:['Atrašanās vertikālā stāvoklī (piemēram, stāvēšana, iešana) ilgāku laiku (30 minūtes)','Piecelšanās kājās no sēdus stāvokļa','Pārvietošanās pa mājokli','Iziešana no mājokļa','200 metru attāluma noiešana'],
+   hints:['Spēja stāvēt vai staigāt 30 minūtes bez atpūtas.','Piemēram, piecelšanās no krēsla vai gultas bez palīdzības.','Pārvietošanās starp istabām, izmantojot kāpnes, ja nepieciešams.','Spēja patstāvīgi iziet ārā no mājas.','Attālums aptuveni 2 kvartāli pa līdzenu virsmu.']},
+  {title:'Pašaprūpe',required:false,
+   questions:['Mazgāšanās','Ģērbšanās','Ēšana','Palikšana uz dažām dienām vienatnē'],
+   hints:['Ķermeņa mazgāšana, dušas vai vannas lietošana.','Apģērba uzvilkšana un novilkšana, arī apavu aizsien.','Pārtikas pagatavošana un patērēšana patstāvīgi.','Spēja rūpēties par sevi bez citu palīdzības vairākas dienas.']},
+  {title:'Mājas dzīve un darbs',required:true,
+   questions:['Galveno mājsaimniecības darbu veikšana','Darba pienākumu veikšana (ja Jūs strādājat)'],
+   hints:['Piemēram, uzkopšana, mazgāšana, ēdiena gatavošana.','Spēja veikt darba pienākumus pilnā apjomā un tempā.']}
 ];
 function renderPnSections(){
   const wrap=document.getElementById('pn-sections');
   if(!wrap)return;
+  const opts='<option>Izvēlieties vērtību...</option><option>Nekādu grūtību</option><option>Nelielas grūtības</option><option>Vidējas grūtības</option><option>Lielas grūtības</option><option>Ļoti lielas grūtības</option>';
   let qNum=1,html='';
   PN_SECTIONS.forEach(sec=>{
     html+=`<div class="pn-section-title${sec.required?' req':''}">${sec.title}</div>`;
-    sec.questions.forEach(q=>{
-      html+=`<div class="pn-qrow"><div class="pn-qlabel">${qNum}. ${q} <span class="pn-req">*</span> <span class="pn-help">i</span></div><select class="pn-qselect"><option>Izvēlieties vērtību...</option><option>1 - Nav grūtību</option><option>2 - Nelielas grūtības</option><option>3 - Vidējas grūtības</option><option>4 - Lielas grūtības</option><option>5 - Nevar veikt</option></select></div>`;
+    sec.questions.forEach((q,qi)=>{
+      html+=`<div class="pn-qrow">
+        <div class="pn-qlabel">${qNum}. ${q} <span class="pn-req">*</span></div>
+        <select class="pn-qselect">${opts}</select>
+        <div class="pn-hint"><div class="pn-hint-icon">i</div><div class="pn-hint-text">${sec.hints[qi]}</div></div>
+      </div>`;
       qNum++;
     });
     html+=`<div class="pn-note">Šeit Jūs varat precizēt Jums svarīgu informāciju saistībā ar <b>"${sec.title}"</b> jautājumiem. Lūdzu, norādiet jautājuma numuru un īsumā aprakstiet problēmu.</div><textarea class="pn-textarea"></textarea>`;
