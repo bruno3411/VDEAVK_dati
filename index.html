@@ -374,6 +374,9 @@ body { font-family: 'Segoe UI', Arial, sans-serif; font-size: 14px; color: #222;
     </div>
 
     <div class="pn-block-title">Informācija par Jūsu nodarbinātību</div>
+    <div style="height:16px;"></div>
+    <div class="pn-alert">Ar zvaigznīti (<span>*</span>) atzīmētie lauki ir jāaizpilda obligāti.</div>
+    <div class="pn-note" style="margin-bottom:24px;">Lūdzu, norādiet informāciju par Jūsu pašreizējo vai pēdējo nodarbinātību.</div>
     <div class="pn-field">
       <div class="pn-flabel">Izglītība <span class="pn-req">*</span></div>
       <select class="pn-select"><option>Izvēlieties izglītību</option><option>Pamatizglītība</option><option>Vidējā izglītība</option><option>Profesionālā izglītība</option><option>Augstākā izglītība</option></select>
@@ -382,12 +385,16 @@ body { font-family: 'Segoe UI', Arial, sans-serif; font-size: 14px; color: #222;
     <div class="pn-field">
       <div class="pn-flabel">Darba vieta <span class="pn-req">*</span></div>
       <input class="pn-input" type="text">
-      <div class="pn-hint"><div class="pn-hint-icon">i</div><div class="pn-hint-text">Norādiet Jūsu pašreizējo darba vietu (profesiju/nodarbošanos).</div></div>
+      <div class="pn-hint"><div class="pn-hint-icon">i</div><div class="pn-hint-text">Norādiet pašreizējo vai pēdējo darbavietu (profesiju vai nodarbošanos).</div></div>
     </div>
     <div class="pn-note">Ja Jūs augstāk minētajā darbavietā (profesijā/nodarbošanās) esat strādājis mazāk par trijiem gadiem vai neesat strādājis, logā zemāk brīvā teksta formā norādiet, kādus darbus un cik ilgi pēdējo triju gadu laikā Jūs esat strādājis</div>
     <textarea class="pn-textarea"></textarea>
 
     <div class="pn-fsp-title">Funkcionālo spēju pašnovērtējuma anketa</div>
+    <div class="pn-hint" style="margin-bottom:20px;align-items:flex-start;">
+      <div class="pn-hint-icon" style="margin-top:2px;flex-shrink:0;">i</div>
+      <div class="pn-hint-text">Anketā ir jautājumi par darbībām, kuras veicot Jums var rasties grūtības saistībā ar Jūsu fizisko un garīgo veselības stāvokli. Atbildiet uz šiem jautājumiem, izvērtējot, cik lielas grūtības Jums sagādājušas minētās darbības. Izvēlieties vienu atbildi un veiciet atzīmi attiecīgajā aplītī.</div>
+    </div>
     <div id="pn-sections"></div>
 
     <div class="s2-actions" style="margin-top:20px">
@@ -647,18 +654,41 @@ function renderIesniegumi(data) {
 }
 
 const PN_SECTIONS=[
-  {title:'Saprašana un komunikācija',required:false,
+  {title:'Saprašana un komunikācija',required:false,sectionHint:'Ietver darbības, kas saistītas ar uzmanību, atmiņu, problēmu risināšanu, komunikāciju un sociālo mijiedarbību.',
    questions:['Koncentrēšanās kādam darbam uz 10 minūtēm','Atcerēšanās paveikt kaut ko svarīgu','Ikdienas problēmu analīze un to risināšana','Jauna uzdevuma apgūšana, piemēram, nokļūšana iepriekš nezināmā vietā','Citu cilvēku teiktā saprašana','Saskarsme ar nepazīstamiem cilvēkiem','Saprašanās ar sev tuviem cilvēkiem','Sarunāšanās un sarunas uzturēšana'],
-   hints:['Piemēram, lasīšana, rakstīšana, aprēķini vai citi uzdevumi, kas prasa uzmanību.','Piemēram, atcerēties lietot medikamentus, apmeklēt ārstu vai veikt maksājumus.','Piemēram, lēmumu pieņemšana ikdienas situācijās.','Jaunas prasmes apgūšana vai orientēšanās nepazīstamā vidē.','Saziņāšanās gan mutiski, gan rakstski, izmantojot zīmju valodu vai žestus.','Piemēram, saziņa ar valsts iestādēm, veikalu darbiniekiem vai jaunu cilvēku iepazīšana.','Piemēram, komunikācija ar ģimenes locekļiem vai draugiem.','Spēja piedalīties sarunā un to uzturēt pietiekami ilgi.']},
-  {title:'Mobilitāte',required:false,
+   hints:[
+     'Koncentrēšanās kādam darba uzdevumam, lasīšanai, rakstīšanai, mūzikas instrumenta spēlēšanai.',
+     'Ikdienā svarīgās lietas un spēja tās atcerēties, ieskaitot piezīmju grāmatiņu izmantošanu.',
+     'Kā tiek identificētas problēmas, kā tiek meklēti risinājuma veidi un kā tie tiek īstenoti, lai sasniegtu vēlamo rezultātu.',
+     'Cik viegli tiek apgūta jauna informācija, vai nepieciešama palīdzība, lai iemācītos jaunu uzdevumu, vai nepieciešams atkārtot apgūto un cik daudz.',
+     'Spēja saprast runu, arī tad, ja tā ir ātra, ja apkārt ir fona troksnis, ja vienlaikus runā vairākas personas.',
+     'Saziņa gan mutiski, gan rakstiski, izmantojot zīmju valodu vai žestus.',
+     'Attiecību uzturēšanu ar tuvumā esošiem cilvēkiem gan ģimenē, gan ārpus tās.',
+     'Kontaktu veidošanu un uzturēšanu, vēlamā rezultāta sasniegšana (piemēram, kontaktēšanās ar veikala pārdevēju, ar pakalpojuma sniedzēju, lai saņemtu nepieciešamo preci vai pakalpojumu).'
+   ]},
+  {title:'Mobilitāte',required:false,sectionHint:'Ietver darbības, kas saistītas ar kustību, pārvietošanos un fizisko izturību.',
    questions:['Atrašanās vertikālā stāvoklī (piemēram, stāvēšana, iešana) ilgāku laiku (30 minūtes)','Piecelšanās kājās no sēdus stāvokļa','Pārvietošanās pa mājokli','Iziešana no mājokļa','200 metru attāluma noiešana'],
-   hints:['Spēja stāvēt vai staigāt 30 minūtes bez atpūtas.','Piemēram, piecelšanās no krēsla vai gultas bez palīdzības.','Pārvietošanās starp istabām, izmantojot kāpnes, ja nepieciešams.','Spēja patstāvīgi iziet ārā no mājas.','Attālums aptuveni 2 kvartāli pa līdzenu virsmu.']},
-  {title:'Pašaprūpe',required:false,
+   hints:[
+     'Atrašanās ilgāku laiku stāvus stāvoklī, tas nenozīmē, ka jābūt miera stāvoklī, pieļaujamas kustības.',
+     'Spēju piecelties no krēsla vai tualetes poda (tas nav attiecināms uz piecelšanos kājās no sēdus stāvokļa uz grīdas).',
+     'Pārvietošanās istabā vai no istabas uz istabu, arī izmantojot palīglīdzekļus.',
+     'Fiziskas spējas iziet no mājokļa, arī emocionāli psiholoģiskie aspekti (piemēram, depresija, trauksme).',
+     'Spēja pārvietoties pa līdzenu virsmu, noejot noteiktu attālumu.'
+   ]},
+  {title:'Pašaprūpe',required:false,sectionHint:'Ietver darbības, kas saistītas ar ikdienas personīgo aprūpi.',
    questions:['Mazgāšanās','Ģērbšanās','Ēšana','Palikšana uz dažām dienām vienatnē'],
-   hints:['Ķermeņa mazgāšana, dušas vai vannas lietošana.','Apģērba uzvilkšana un novilkšana, arī apavu aizsien.','Pārtikas pagatavošana un patērēšana patstāvīgi.','Spēja rūpēties par sevi bez citu palīdzības vairākas dienas.']},
-  {title:'Mājas dzīve un darbs',required:true,
+   hints:[
+     'Spēju nomazgāties (ķermeņa mazgāšana), arī izmantojot palīglīdzekļus.',
+     'Drēbju izņemšanu no skapja, noņemšana no pakaramā, to uzvilkšana un sakārtošana (piemēram, pogu, rāvējslēdzēja lietošana).',
+     'Ēdiena paņemšana no šķīvja, ievietošana mutē, košļāšana un norīšana, dzēriena dzeršana. Nav domāta ēdiena pagatavošana.',
+     'Spēja palikt vienam ilgāku laiku, iztiekot bez citu palīdzības.'
+   ]},
+  {title:'Mājas dzīve un darbs',required:true,sectionHint:'Ietver darbības, kas saistītas ar mājsaimniecību un darba pienākumiem.',
    questions:['Galveno mājsaimniecības darbu veikšana','Darba pienākumu veikšana (ja Jūs strādājat)'],
-   hints:['Piemēram, uzkopšana, mazgāšana, ēdiena gatavošana.','Spēja veikt darba pienākumus pilnā apjomā un tempā.']}
+   hints:[
+     'Mājas tīrīšana, veļas mazgāšana, mājsaimniecības ierīču lietošana.',
+     null
+   ]}
 ];
 function renderPnSections(){
   const wrap=document.getElementById('pn-sections');
@@ -666,12 +696,14 @@ function renderPnSections(){
   const opts='<option>Izvēlieties vērtību...</option><option>Nekādu grūtību</option><option>Nelielas grūtības</option><option>Vidējas grūtības</option><option>Lielas grūtības</option><option>Ļoti lielas grūtības</option>';
   let qNum=1,html='';
   PN_SECTIONS.forEach(sec=>{
-    html+=`<div class="pn-section-title${sec.required?' req':''}">${sec.title}</div>`;
+    html+=`<div class="pn-section-title${sec.required?' req':''}"><span>${sec.title}</span></div>`;
+    if(sec.sectionHint)html+=`<div class="pn-hint" style="margin-bottom:12px;"><div class="pn-hint-icon">i</div><div class="pn-hint-text">${sec.sectionHint}</div></div>`;
     sec.questions.forEach((q,qi)=>{
+      const hint=sec.hints[qi];
       html+=`<div class="pn-qrow">
         <div class="pn-qlabel">${qNum}. ${q} <span class="pn-req">*</span></div>
         <select class="pn-qselect">${opts}</select>
-        <div class="pn-hint"><div class="pn-hint-icon">i</div><div class="pn-hint-text">${sec.hints[qi]}</div></div>
+        ${hint?`<div class="pn-hint"><div class="pn-hint-icon">i</div><div class="pn-hint-text">${hint}</div></div>`:''}
       </div>`;
       qNum++;
     });
